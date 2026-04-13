@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>上海交通大学媒体与传播学院 | 文化产业管理</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="page-noise"></div>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <div class="official-strip">
+    <p>上海交通大学媒体与传播学院</p>
+    <p>School of Media and Communication · Official Portal</p>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">SJTU • SMC</div>
+    <nav>
+      <a href="#about">学院概况</a>
+      <a href="#faculty">师资队伍</a>
+      <a href="#news">学院新闻</a>
+      <a href="#program">人才培养</a>
+    </nav>
+    <div class="menu-wrap">
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel">导航菜单</button>
+      <div id="menu-panel" class="menu-panel" hidden>
+        <p class="menu-group-title">一级栏目</p>
+        <a href="#about">学院概况</a>
+        <a href="#faculty">师资队伍</a>
+        <a href="#news">学院新闻</a>
+        <a href="#notices">通知公告</a>
+        <a href="#events">学术活动</a>
+        <a href="#student-affairs">学生事务</a>
+        <a href="#program">人才培养</a>
+        <p class="menu-group-title">二级页面</p>
+        <a href="/detail?type=about">学院概况详情</a>
+        <a href="/detail?type=faculty">师资队伍详情</a>
+        <a href="/detail?type=news">学院新闻详情</a>
+        <a href="/detail?type=notices">通知公告详情</a>
+        <a href="/detail?type=events">学术活动详情</a>
+        <a href="/detail?type=students">学生事务详情</a>
+        <a href="/detail?type=program">人才培养详情</a>
+        <button id="menu-close" class="menu-close" type="button">收起菜单</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <p class="eyebrow reveal">Shanghai Jiao Tong University</p>
+      <h1 class="hero-title reveal">上海交通大学媒体与传播学院<br />文化产业管理方向</h1>
+      <p class="hero-subtitle reveal">对齐学院官网信息体系，围绕学院概况、师资队伍、学院新闻、通知公告、学术活动与人才培养展示核心办学内容。</p>
+      <div class="hero-meta reveal">
+        <span>2026 学院门户信息展示</span>
+        <span>招生代码：SJTU-MCM</span>
+        <span>更新日期：2026-03-27</span>
+      </div>
+      <div class="hero-cta reveal">
+        <a class="btn primary" href="#program">查看培养方案</a>
+        <a class="btn ghost" href="#news">了解最新动态</a>
+      </div>
+      <div class="hero-metrics reveal">
+        <article>
+          <h3>92%</h3>
+          <p>毕业生进入头部平台/机构</p>
+        </article>
+        <article>
+          <h3>48</h3>
+          <p>合作企业与实践基地</p>
+        </article>
+        <article>
+          <h3>13</h3>
+          <p>跨学科联合实验课程</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section panel reveal-block">
+      <div class="section-link-row">
+        <h2>学院概况</h2>
+        <a class="inline-detail-link" href="/detail?type=about">进入详情页</a>
+      </div>
+      <p>
+        学院坚持“交叉融合、技术赋能、社会关怀”的发展理念，聚焦智能传播、平台治理、国际传播与文化产业创新，形成兼具理论深度与实践导向的人才培养机制。
+      </p>
+    </section>
+
+    <section id="faculty" class="section reveal-block">
+      <div class="section-head">
+        <h2>师资队伍</h2>
+        <p>汇聚传播学、社会学、管理学与计算传播等多领域教师团队。<a class="inline-detail-link" href="/detail?type=faculty">进入详情页</a></p>
+      </div>
+      <div id="faculty-grid" class="grid cards"></div>
+    </section>
+
+    <section id="news" class="section reveal-block">
+      <div class="section-head">
+        <h2>学院新闻</h2>
+        <p>发布学院治理、交流合作、学生发展与重要活动动态。<a class="inline-detail-link" href="/detail?type=news">进入详情页</a></p>
+      </div>
+      <div id="news-list" class="timeline"></div>
+    </section>
+
+    <section id="notices" class="section reveal-block">
+      <div class="section-head">
+        <h2>通知公告</h2>
+        <p>招生、答辩、评审与论坛征稿等面向师生的通知信息。<a class="inline-detail-link" href="/detail?type=notices">进入详情页</a></p>
+      </div>
+      <div id="notice-list" class="timeline"></div>
+    </section>
+
+    <section id="events" class="section reveal-block">
+      <div class="section-head">
+        <h2>学术活动</h2>
+        <p>高端讲座、学术论坛与研究方法工作坊持续更新。<a class="inline-detail-link" href="/detail?type=events">进入详情页</a></p>
+      </div>
+      <div id="event-list" class="timeline"></div>
+    </section>
+
+    <section id="student-affairs" class="section reveal-block">
+      <div class="section-head">
+        <h2>学生事务</h2>
+        <p>奖学金评审、资助认定、培养过程管理等学生服务信息。<a class="inline-detail-link" href="/detail?type=students">进入详情页</a></p>
+      </div>
+      <div id="student-affairs-list" class="timeline"></div>
+    </section>
+
+    <section id="program" class="section panel reveal-block">
+      <div class="section-head">
+        <h2>人才培养</h2>
+        <a class="inline-detail-link" href="/detail?type=program">进入详情页</a>
+      </div>
+      <div id="program-content"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>上海交通大学媒体与传播学院 · 文化产业管理专业</p>
+    <p>Design Concept Demo by Copilot</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

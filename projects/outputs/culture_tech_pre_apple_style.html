@@ -1,0 +1,2240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>文化与科技概论｜尘白禁区与恋与深空舆情风波</title>
+  <style>
+    :root {
+      --bg-a: #f1fbf6;
+      --bg-b: #ddf2e6;
+      --bg-c: #c6e9d6;
+      --ink-strong: #041d14;
+      --ink: #0f3a2a;
+      --ink-soft: #215843;
+      --green-1: #0f5f3f;
+      --green-2: #21805a;
+      --green-3: #3ea77a;
+      --glass: rgba(255, 255, 255, 0.7);
+      --glass-strong: rgba(255, 255, 255, 0.88);
+      --line: rgba(255, 255, 255, 0.9);
+      --shadow-soft: 0 22px 54px rgba(8, 57, 38, 0.2);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-ui: 720ms;
+      --dur-slide: 1240ms;
+      --dur-fx-orbit: 1580ms;
+      --dur-fx-fold: 1460ms;
+      --dur-fx-sweep: 1520ms;
+      --dur-layer: 920ms;
+      --content-max: 1380px;
+      --font-display: "Avenir Next", "SF Pro Display", "Segoe UI Variable Display", "PingFang SC", sans-serif;
+      --font-serif: "Iowan Old Style", "Songti SC", "STSong", "Noto Serif SC", serif;
+      --font-body: "SF Pro Text", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      --ppt-ink-1: #122b23;
+      --ppt-ink-2: #124d3e;
+      --ppt-accent: #228b5e;
+      --ppt-soft: #c6e4d3;
+      --ppt-light: #f6fcf9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font-body);
+      color: var(--ink-strong);
+      background: linear-gradient(135deg, var(--bg-a), var(--bg-b) 44%, var(--bg-c));
+      letter-spacing: 0.012em;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(72px);
+      opacity: 0.78;
+      z-index: -3;
+      pointer-events: none;
+      animation: glowDrift 16s var(--ease-soft) infinite alternate;
+    }
+
+    body::before {
+      width: 42vw;
+      height: 42vw;
+      left: -12vw;
+      top: -14vw;
+      background: radial-gradient(circle, rgba(172, 225, 196, 0.85), rgba(120, 188, 152, 0.4) 62%, transparent 70%);
+    }
+
+    body::after {
+      width: 44vw;
+      height: 44vw;
+      right: -14vw;
+      bottom: -16vw;
+      background: radial-gradient(circle, rgba(138, 202, 167, 0.72), rgba(90, 152, 120, 0.36) 62%, transparent 70%);
+    }
+
+    .atmo {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 19% 24%, rgba(255, 255, 255, 0.78), transparent 34%),
+        radial-gradient(circle at 83% 18%, rgba(196, 232, 212, 0.74), transparent 31%),
+        radial-gradient(circle at 72% 79%, rgba(126, 188, 154, 0.5), transparent 35%),
+        radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.32), transparent 48%);
+      animation: auraPulse 14s var(--ease-soft) infinite alternate;
+    }
+
+    @keyframes glowDrift {
+      from {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      to {
+        transform: translate3d(2vw, -1.2vh, 0) scale(1.06);
+      }
+    }
+
+    @keyframes auraPulse {
+      from {
+        opacity: 0.9;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.13;
+      background-image:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.6) 0.5px, transparent 0.5px),
+        linear-gradient(60deg, rgba(255, 255, 255, 0.45) 0.5px, transparent 0.5px);
+      background-size: 24px 24px;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.4);
+      z-index: 80;
+    }
+
+    .progress i {
+      display: block;
+      width: 10%;
+      height: 100%;
+      background: linear-gradient(90deg, #1d6f4f, #4eaf81);
+      transition: width var(--dur-ui) var(--ease-soft);
+    }
+
+    .continuum {
+      position: fixed;
+      left: 2.2vw;
+      top: 12vh;
+      bottom: 12vh;
+      width: 30px;
+      z-index: 40;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    .continuum::before {
+      content: "";
+      width: 2px;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(45, 133, 95, 0.15), rgba(45, 133, 95, 0.5), rgba(45, 133, 95, 0.15));
+      filter: blur(0.2px);
+    }
+
+    .continuum .node {
+      position: absolute;
+      top: 4%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: linear-gradient(145deg, #7bc59c, #34845f);
+      box-shadow: 0 8px 18px rgba(26, 92, 64, 0.26);
+      transition: top var(--dur-ui) var(--ease-soft), transform var(--dur-ui) var(--ease-soft);
+    }
+
+    .relay {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 12;
+      pointer-events: none;
+      transform: translate(76vw, 22vh) scale(1);
+      transition: transform var(--dur-slide) var(--ease), opacity var(--dur-layer) ease;
+      opacity: 0.45;
+    }
+
+    .relay-core {
+      min-width: 168px;
+      height: 54px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.7), rgba(175, 224, 198, 0.64));
+      backdrop-filter: blur(12px) saturate(145%);
+      display: grid;
+      place-items: center;
+      padding: 0 22px;
+      box-shadow: 0 12px 26px rgba(22, 86, 59, 0.2);
+      transition: min-width var(--dur-slide) var(--ease), height var(--dur-slide) var(--ease);
+    }
+
+    .relay-core span {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e5e43;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: opacity 280ms ease;
+    }
+
+    .emblem {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 11;
+      width: 188px;
+      height: 188px;
+      pointer-events: none;
+      transform: translate(7vw, 68vh) rotate(0deg) scale(1);
+      transition: transform var(--dur-fx-orbit) var(--ease), opacity var(--dur-layer) ease;
+      filter: drop-shadow(0 18px 24px rgba(25, 94, 65, 0.24));
+      opacity: 0.34;
+    }
+
+    .emblem.bridgeing {
+      filter: drop-shadow(0 10px 14px rgba(18, 74, 51, 0.22));
+    }
+
+    .emblem svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .emblem text {
+      font-family: var(--font-display);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      fill: #1f6145;
+      font-weight: 700;
+    }
+
+    .emblem .tag {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 780;
+      color: #17553c;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+    }
+
+    .hud {
+      position: fixed;
+      right: 16px;
+      top: 14px;
+      z-index: 85;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--glass);
+      backdrop-filter: blur(14px) saturate(145%);
+      box-shadow: var(--shadow-soft);
+      user-select: none;
+    }
+
+    .hud .meta {
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      min-width: 74px;
+      text-align: center;
+    }
+
+    .hud button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(23, 102, 70, 0.12);
+      color: var(--green-1);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 220ms ease, background 220ms ease;
+    }
+
+    .hud button:hover {
+      transform: translateY(-1px);
+      background: rgba(23, 102, 70, 0.2);
+    }
+
+
+    .deck {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+
+    .fx-particles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 8;
+      opacity: 1;
+      mix-blend-mode: screen;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 6vh 6.3vw 5vh;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(40px) scale(0.986);
+      filter: blur(5px);
+      transition: opacity var(--dur-layer) var(--ease), transform var(--dur-layer) var(--ease), filter var(--dur-layer) ease;
+      transform-origin: center center;
+      z-index: 20;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .slide.entering,
+    .slide.leaving {
+      pointer-events: none;
+      will-change: transform, opacity, clip-path, filter;
+    }
+
+    .slide.entering.forward {
+      animation: slideInUpCut var(--dur-slide) var(--ease) both;
+    }
+
+    .slide.leaving.forward {
+      animation: slideOutUpCut var(--dur-slide) var(--ease) both;
+    }
+
+    .slide.entering.backward {
+      animation: slideInDownCut var(--dur-slide) var(--ease) both;
+    }
+
+    .slide.leaving.backward {
+      animation: slideOutDownCut var(--dur-slide) var(--ease) both;
+    }
+
+    .slide.entering.fx-orbit.forward {
+      animation: slideInOrbit var(--dur-fx-orbit) var(--ease-soft) both;
+    }
+
+    .slide.leaving.fx-orbit.forward {
+      animation: slideOutOrbit var(--dur-fx-orbit) var(--ease-soft) both;
+    }
+
+    .slide.entering.fx-fold.forward {
+      animation: slideInFold var(--dur-fx-fold) var(--ease-soft) both;
+    }
+
+    .slide.leaving.fx-fold.forward {
+      animation: slideOutFold var(--dur-fx-fold) var(--ease-soft) both;
+    }
+
+    .slide.entering.fx-sweep.forward {
+      animation: slideInSweep var(--dur-fx-sweep) var(--ease-soft) both;
+    }
+
+    .slide.leaving.fx-sweep.forward {
+      animation: slideOutSweep var(--dur-fx-sweep) var(--ease-soft) both;
+    }
+
+    @keyframes slideInUpCut {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 15%, 0) scale(0.93) rotateX(8deg);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideOutUpCut {
+      from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
+        clip-path: inset(0 0 0 0 round 0px);
+        filter: blur(0);
+      }
+      to {
+        opacity: 0;
+        transform: translate3d(0, -14%, 0) scale(1.08) rotateX(-8deg);
+        filter: blur(3px);
+      }
+    }
+
+    @keyframes slideInDownCut {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -15%, 0) scale(0.93) rotateX(-8deg);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideOutDownCut {
+      from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
+        clip-path: inset(0 0 0 0 round 0px);
+        filter: blur(0);
+      }
+      to {
+        opacity: 0;
+        transform: translate3d(0, 14%, 0) scale(1.08) rotateX(8deg);
+        filter: blur(3px);
+      }
+    }
+
+    @keyframes slideInOrbit {
+      from {
+        opacity: 0;
+        transform: translate3d(18%, 10%, 0) scale(0.86) rotateZ(5deg) rotateY(-12deg);
+        filter: blur(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateZ(0deg) rotateY(0deg);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideOutOrbit {
+      from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateZ(0deg) rotateY(0deg);
+      }
+      to {
+        opacity: 0;
+        transform: translate3d(-20%, -10%, 0) scale(1.14) rotateZ(-4deg) rotateY(10deg);
+        filter: blur(10px);
+      }
+    }
+
+    @keyframes slideInFold {
+      from {
+        opacity: 0;
+        transform: perspective(1500px) rotateX(18deg) translateY(26%) scale(0.9);
+        transform-origin: 50% 100%;
+        filter: blur(10px);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(1500px) rotateX(0deg) translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideOutFold {
+      from {
+        opacity: 1;
+        transform: perspective(1500px) rotateX(0deg) translateY(0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: perspective(1500px) rotateX(-18deg) translateY(-24%) scale(1.1);
+        filter: blur(10px);
+      }
+    }
+
+    @keyframes slideInSweep {
+      from {
+        opacity: 0;
+        transform: translate3d(-24%, 0, 0) scale(0.9) skewY(2deg);
+        clip-path: inset(0 100% 0 0 round 20px);
+        filter: blur(9px);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) skewY(0deg);
+        clip-path: inset(0 0 0 0 round 0px);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideOutSweep {
+      from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+        clip-path: inset(0 0 0 0 round 0px);
+      }
+      to {
+        opacity: 0;
+        transform: translate3d(24%, 0, 0) scale(1.12) skewY(-2deg);
+        clip-path: inset(0 0 0 100% round 20px);
+        filter: blur(8px);
+      }
+    }
+
+    .deck.forward .slide.active .surface {
+      animation: surfaceIn var(--dur-layer) var(--ease);
+    }
+
+    .deck.backward .slide.active .surface {
+      animation: surfaceInBack var(--dur-layer) var(--ease);
+    }
+
+    @keyframes surfaceIn {
+      from {
+        transform: translateY(18px) scale(0.99);
+        opacity: 0.75;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes surfaceInBack {
+      from {
+        transform: translateY(-12px) scale(0.99);
+        opacity: 0.75;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .surface {
+      --back-shift-x: 0px;
+      --back-shift-y: 0px;
+      --mid-shift-x: 0px;
+      --mid-shift-y: 0px;
+      --front-shift-x: 0px;
+      --front-shift-y: 0px;
+      width: min(var(--content-max), 100%);
+      height: min(90vh, 860px);
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--glass);
+      backdrop-filter: blur(18px) saturate(155%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      position: relative;
+      isolation: isolate;
+      transition: transform var(--dur-fx-orbit) var(--ease), filter var(--dur-fx-orbit) var(--ease);
+      animation: breatheSurface 5.8s var(--ease-soft) infinite alternate;
+    }
+
+    @keyframes breatheSurface {
+      from {
+        box-shadow: var(--shadow-soft);
+      }
+      to {
+        box-shadow: 0 24px 62px rgba(8, 57, 38, 0.23);
+      }
+    }
+
+    .slide.zoom-cam.active .surface {
+      animation: cameraPush 1820ms var(--ease-soft) both;
+      filter: blur(0);
+    }
+
+    .slide.zoom-cam.leaving .surface {
+      animation: cameraPull 1320ms var(--ease-soft) both;
+    }
+
+    @keyframes cameraPush {
+      from {
+        transform: translateZ(0) scale(0.92);
+        filter: blur(6px);
+      }
+      to {
+        transform: translateZ(0) scale(1.03);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes cameraPull {
+      from {
+        transform: translateZ(0) scale(1.03);
+        filter: blur(0);
+      }
+      to {
+        transform: translateZ(0) scale(1.16);
+        filter: blur(5px);
+      }
+    }
+
+    .surface::before {
+      content: "";
+      position: absolute;
+      width: 52%;
+      height: 40%;
+      right: -10%;
+      top: -18%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(132, 215, 170, 0.5), transparent 66%);
+      transform: translate(var(--back-shift-x), var(--back-shift-y));
+      transition: transform var(--dur-layer) var(--ease);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .surface::after {
+      content: "";
+      position: absolute;
+      width: 46%;
+      height: 38%;
+      left: -10%;
+      bottom: -22%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(84, 175, 130, 0.44), transparent 68%);
+      transform: translate(calc(var(--back-shift-x) * -0.68), calc(var(--back-shift-y) * -0.68));
+      transition: transform var(--dur-layer) var(--ease);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .heading {
+      padding: 30px 40px 12px;
+      display: grid;
+      gap: 10px;
+      transform: translate3d(var(--mid-shift-x), var(--mid-shift-y), 0);
+      transition: transform var(--dur-layer) var(--ease);
+    }
+
+    .focus-chip {
+      justify-self: start;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(18, 77, 62, 0.95), rgba(34, 139, 94, 0.9));
+      color: #effdf6;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-transform: uppercase;
+      box-shadow: 0 8px 20px rgba(17, 89, 61, 0.28);
+    }
+
+    .kicker {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ppt-ink-2);
+      font-weight: 700;
+      font-family: var(--font-display);
+    }
+
+    .title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 3.25vw, 56px);
+      line-height: 1.14;
+      color: var(--ink-strong);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(16px, 1.15vw, 21px);
+      color: var(--ppt-ink-2);
+      font-weight: 540;
+      line-height: 1.45;
+    }
+
+    .core-line {
+      margin-top: 2px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(225, 245, 234, 0.92));
+      color: var(--ppt-ink-1);
+      font-size: clamp(16px, 1.1vw, 20px);
+      line-height: 1.45;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(13, 66, 45, 0.12);
+    }
+
+    .content {
+      min-height: 0;
+      padding: 12px 40px 34px;
+      display: grid;
+      gap: 14px;
+      align-content: stretch;
+      align-items: stretch;
+      transform: translate3d(var(--front-shift-x), var(--front-shift-y), 0);
+      transition: transform var(--dur-layer) var(--ease);
+    }
+
+    .split {
+      grid-template-columns: 1.08fr 0.92fr;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      padding: 22px;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--dur-layer) var(--ease), box-shadow var(--dur-layer) var(--ease);
+      box-shadow: 0 12px 28px rgba(10, 50, 35, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      left: -16%;
+      top: -26%;
+      width: 62%;
+      height: 54%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(198, 238, 216, 0.56), transparent 68%);
+      filter: blur(14px);
+    }
+
+    .img-slot {
+      transition: transform var(--dur-layer) var(--ease), box-shadow var(--dur-layer) var(--ease);
+    }
+
+    .slide.entering .heading {
+      animation: midLayerIn var(--dur-layer) var(--ease) both;
+    }
+
+    .slide.entering .card,
+    .slide.entering .img-slot {
+      animation: frontLayerIn var(--dur-layer) var(--ease) both;
+    }
+
+    .slide.leaving .heading {
+      animation: midLayerOut 860ms var(--ease) both;
+    }
+
+    .slide.leaving .card,
+    .slide.leaving .img-slot {
+      animation: frontLayerOut 860ms var(--ease) both;
+    }
+
+    @keyframes midLayerIn {
+      from {
+        opacity: 0;
+        filter: blur(2px);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes frontLayerIn {
+      from {
+        opacity: 0;
+        filter: blur(2px);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes midLayerOut {
+      from {
+        opacity: 1;
+        filter: blur(0);
+      }
+      to {
+        opacity: 0;
+        filter: blur(1px);
+      }
+    }
+
+    @keyframes frontLayerOut {
+      from {
+        opacity: 1;
+        filter: blur(0);
+      }
+      to {
+        opacity: 0;
+        filter: blur(1px);
+      }
+    }
+
+    .layout-reverse .split > :first-child {
+      order: 2;
+    }
+
+    .layout-reverse .split > :last-child {
+      order: 1;
+    }
+
+    .layout-stagger .split > :first-child {
+      transform: none;
+    }
+
+    .layout-stagger .split > :last-child {
+      transform: none;
+    }
+
+    .layout-float .split {
+      grid-template-columns: var(--split-left) var(--split-right);
+      position: static;
+    }
+
+    .layout-float .split > .img-slot {
+      position: relative;
+      right: auto;
+      top: auto;
+      width: auto;
+      min-height: 286px;
+      z-index: 2;
+      transform: none;
+    }
+
+    .layout-float .split > .card {
+      width: auto;
+      min-height: 100%;
+      padding-right: 22px;
+    }
+
+    .layout-balance .split > :first-child {
+      transform: none;
+    }
+
+    .layout-balance .split > :last-child {
+      transform: none;
+    }
+
+    /* PPT-precise mapping: title at ~6%, content starts ~21%, with per-slide ratios */
+    .slide .surface {
+      --title-left: 6%;
+      --title-right: 4%;
+      --title-top: 5.8%;
+      --title-width: 66%;
+      --content-left: 6%;
+      --content-right: 3.5%;
+      --content-top: 1.2%;
+      --content-bottom: 9.6%;
+      --split-left: 1.08fr;
+      --split-right: 0.92fr;
+      --foot-bar: 2.2%;
+    }
+
+    .slide .heading {
+      padding: var(--title-top) var(--title-right) 8px var(--title-left);
+      max-width: var(--title-width);
+      border-bottom: 1px solid rgba(18, 77, 62, 0.15);
+    }
+
+    .slide .content {
+      padding: var(--content-top) var(--content-right) var(--content-bottom) var(--content-left);
+      gap: 16px;
+    }
+
+    .slide .split {
+      grid-template-columns: var(--split-left) var(--split-right);
+      align-items: stretch;
+    }
+
+    .slide-foot {
+      position: absolute;
+      left: var(--content-left);
+      right: var(--content-right);
+      bottom: var(--foot-bar);
+      height: 30px;
+      border-radius: 10px;
+      border: 1px solid rgba(18, 77, 62, 0.2);
+      background: linear-gradient(90deg, rgba(246, 252, 249, 0.9), rgba(228, 244, 235, 0.88));
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 14px;
+      padding: 0 12px;
+      font-size: 11px;
+      color: var(--ppt-ink-2);
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      z-index: 3;
+    }
+
+    .slide-foot .tag {
+      justify-self: start;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .slide-foot .meta {
+      color: #1f6e4d;
+    }
+
+    .slide-foot .page {
+      border-radius: 999px;
+      border: 1px solid rgba(18, 77, 62, 0.24);
+      padding: 3px 10px;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--ppt-ink-2);
+      min-width: 56px;
+      text-align: center;
+    }
+
+    .slide.v1 .surface {
+      --title-width: 72%;
+      --content-top: 0.8%;
+      --split-left: 1.18fr;
+      --split-right: 0.82fr;
+    }
+
+    .slide.v1 .title {
+      font-size: clamp(42px, 4.3vw, 72px);
+    }
+
+    .slide.v2 .surface {
+      --split-left: 1fr;
+      --split-right: 1fr;
+    }
+
+    .slide.v2 .content .card {
+      border-top: 4px solid rgba(34, 139, 94, 0.48);
+    }
+
+    .slide.v2-intro .surface {
+      --split-left: 1.18fr;
+      --split-right: 0.82fr;
+      --title-width: 70%;
+    }
+
+    .slide.v2-intro .bullets {
+      gap: 9px;
+    }
+
+    .slide.v2-intro .bullets li {
+      font-size: 16px;
+      line-height: 1.38;
+      padding: 8px 10px;
+    }
+
+    .slide.v2-intro .compare-big {
+      margin-top: 8px;
+      border-radius: 18px;
+      border: 1px solid rgba(18, 77, 62, 0.22);
+      background: linear-gradient(135deg, rgba(246, 252, 249, 0.95), rgba(228, 245, 236, 0.95));
+      padding: 18px 16px;
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 2.2vw, 34px);
+      line-height: 1.36;
+      color: var(--ppt-ink-1);
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .slide.v2-intro .compare-big span {
+      display: block;
+      margin-top: 8px;
+      font-size: clamp(16px, 1.1vw, 20px);
+      line-height: 1.5;
+      font-family: var(--font-body);
+      color: var(--ppt-ink-2);
+      font-weight: 600;
+    }
+
+    .slide.v3 .surface,
+    .slide.v5 .surface,
+    .slide.v6 .surface,
+    .slide.v10 .surface {
+      --split-left: 1.34fr;
+      --split-right: 0.66fr;
+      --title-width: 68%;
+    }
+
+    .slide.v4 .surface,
+    .slide.v7 .surface,
+    .slide.v9 .surface,
+    .slide.v11 .surface {
+      --split-left: 0.98fr;
+      --split-right: 1.02fr;
+    }
+
+    .slide.v4 .content,
+    .slide.v9 .content {
+      grid-template-columns: 1fr;
+    }
+
+    .slide.v4 .content {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .slide.v4 .content > .img-slot {
+      grid-column: 1 / -1;
+      min-height: 150px;
+      align-self: end;
+    }
+
+    .slide.v4 .content > .img-slot strong {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .slide.v4 .content > .img-slot span {
+      font-size: 13px;
+    }
+
+    .slide.v4 .timeline article,
+    .slide.v4 .bullets li {
+      font-size: 15px;
+      line-height: 1.4;
+      padding: 8px 10px;
+    }
+
+    .slide.v5 .split {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .slide.v5 .timeline article,
+    .slide.v5 .bullets li {
+      font-size: 15px;
+      line-height: 1.42;
+      padding: 8px 10px;
+    }
+
+    .slide.v7 .surface {
+      --title-width: 70%;
+    }
+
+    .slide.v7 .img-slot {
+      min-height: 330px;
+      position: relative;
+    }
+
+    .slide.v7 .img-slot::before {
+      content: "全平台对比";
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      z-index: 3;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #0f4b38;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(246, 252, 249, 0.88);
+      border: 1px solid rgba(18, 77, 62, 0.2);
+    }
+
+    .slide.v7 .content .final-line,
+    .slide.v11 .content .final-line {
+      border-left: 6px solid rgba(34, 139, 94, 0.74);
+      padding-left: 14px;
+    }
+
+    .slide.v8 .surface {
+      --split-left: 0.94fr;
+      --split-right: 1.06fr;
+      --title-width: 64%;
+    }
+
+    .slide.v3 .img-slot,
+    .slide.v5 .img-slot {
+      min-height: 380px;
+      align-self: start;
+      transform: translateY(-8px);
+    }
+
+    .slide.v3 .img-slot img,
+    .slide.v5 .img-slot img {
+      object-position: center top;
+    }
+
+    .slide.v8 .content > .card:last-child {
+      min-height: 500px;
+      padding: 30px;
+      transform: translate(0, -4px) scale(1.02) rotate(0deg) !important;
+      z-index: 2;
+    }
+
+    .slide.v8 .flow,
+    .slide.v9 .flow {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .slide.v8 .flow div,
+    .slide.v9 .flow div {
+      border-color: rgba(18, 77, 62, 0.2);
+      background: rgba(246, 252, 249, 0.95);
+    }
+
+    .slide.v11 .final-line {
+      font-size: 26px;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    .slide.v11 .surface {
+      --split-left: 1.22fr;
+      --split-right: 0.78fr;
+    }
+
+    .slide.v11 .card {
+      padding: 18px;
+    }
+
+    .slide.v11 .bullets li {
+      font-size: 16px;
+      line-height: 1.38;
+      padding: 8px 10px;
+    }
+
+    .lead {
+      font-size: 20px;
+      color: var(--ppt-ink-1);
+      line-height: 1.56;
+    }
+
+    .bullets {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .bullets li {
+      font-size: 18px;
+      line-height: 1.46;
+      color: var(--ppt-ink-1);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .bullets li:first-child {
+      border-left: 5px solid var(--ppt-accent);
+      font-weight: 700;
+      background: rgba(243, 252, 247, 0.98);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      border-radius: 13px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      color: #1d4634;
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 620;
+    }
+
+    .img-slot {
+      border-radius: 20px;
+      border: 1px dashed rgba(24, 95, 66, 0.5);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(214, 238, 223, 0.76));
+      min-height: 286px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12px;
+      color: #224f3c;
+      box-shadow: 0 16px 30px rgba(14, 72, 48, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-slot::after {
+      content: "";
+      position: absolute;
+      right: -12%;
+      top: -26%;
+      width: 56%;
+      height: 56%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(231, 248, 239, 0.78), transparent 70%);
+      filter: blur(10px);
+    }
+
+    .mask-round {
+      border-radius: 28px;
+    }
+
+    .mask-slant {
+      border-radius: 14px;
+      clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+    }
+
+    .mask-ellipse {
+      border-radius: 45% / 28%;
+      clip-path: ellipse(48% 42% at 50% 50%);
+      min-height: 260px;
+    }
+
+    .mask-ticket {
+      clip-path: polygon(0% 10%, 8% 0%, 92% 0%, 100% 10%, 100% 90%, 92% 100%, 8% 100%, 0% 90%);
+      border-radius: 16px;
+    }
+
+    .mask-diamond {
+      clip-path: polygon(50% 0%, 100% 18%, 88% 100%, 12% 100%, 0% 18%);
+      border-radius: 14px;
+      min-height: 250px;
+    }
+
+
+
+    .img-slot strong {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 6px;
+    }
+
+    .img-slot span {
+      font-size: 15px;
+      opacity: 0.86;
+      line-height: 1.45;
+    }
+
+    .img-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .flow div {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 12px;
+      text-align: center;
+      font-size: 16px;
+      color: var(--ppt-ink-2);
+      line-height: 1.45;
+      font-weight: 620;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .timeline article {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.62);
+      padding: 12px;
+      font-size: 16px;
+      color: var(--ppt-ink-2);
+      line-height: 1.5;
+    }
+
+    .timeline b {
+      color: var(--green-1);
+    }
+
+    .notes {
+      position: fixed;
+      right: 16px;
+      bottom: 14px;
+      width: min(520px, 90vw);
+      max-height: 44vh;
+      overflow: auto;
+      z-index: 88;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--glass-strong);
+      backdrop-filter: blur(16px) saturate(145%);
+      box-shadow: var(--shadow-soft);
+      padding: 14px;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: 320ms var(--ease);
+    }
+
+    .notes.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .notes h3 {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      margin-bottom: 7px;
+      color: var(--green-1);
+    }
+
+    .notes p {
+      font-size: 16px;
+      color: #173c2d;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .dotbar {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 78;
+      display: flex;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .dotbar button {
+      width: 10px;
+      height: 10px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(42, 115, 83, 0.34);
+      cursor: pointer;
+      transition: transform 250ms ease, background 250ms ease;
+      padding: 0;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .dotbar button.active {
+      transform: scale(1.42);
+      background: rgba(28, 112, 76, 0.92);
+      box-shadow: 0 0 0 4px rgba(97, 186, 146, 0.24);
+    }
+
+    .final-line {
+      margin-top: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.76);
+      padding: 16px;
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--ink-strong);
+      line-height: 1.5;
+      font-weight: 680;
+    }
+
+    .card .bullets,
+    .card .timeline,
+    .card .mini-grid,
+    .card .flow,
+    .card .final-line {
+      flex-shrink: 1;
+    }
+
+    @media (max-width: 1080px) {
+      .surface {
+        border-radius: 22px;
+        height: min(90vh, 900px);
+      }
+
+      .split,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .continuum {
+        display: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hud {
+        top: auto;
+        right: 10px;
+        bottom: 12px;
+      }
+
+      .dotbar {
+        bottom: 72px;
+      }
+
+      .heading {
+        padding: 22px 20px 10px;
+        max-width: 100%;
+      }
+
+      .content {
+        padding: 8px 20px 22px;
+      }
+
+      .slide-foot {
+        left: 20px;
+        right: 20px;
+      }
+
+      .title {
+        font-size: clamp(31px, 8vw, 44px);
+      }
+
+      .subtitle {
+        font-size: clamp(16px, 3.8vw, 20px);
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="atmo"></div>
+  <div class="grain"></div>
+  <div class="progress"><i id="progressBar"></i></div>
+
+  <div class="continuum" aria-hidden="true">
+    <i class="node" id="continuumNode"></i>
+  </div>
+
+  <div class="relay" id="relay" aria-hidden="true">
+    <div class="relay-core" id="relayCore">
+      <span id="relayLabel">FRAME</span>
+    </div>
+  </div>
+
+  <div class="emblem" id="emblem" aria-hidden="true">
+    <svg viewBox="0 0 200 200" role="img" aria-label="SJTU文化产业管理官方标识同风格重绘配色版">
+      <defs>
+        <linearGradient id="eg1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#e7f6ee" />
+          <stop offset="100%" stop-color="#9cd5b4" />
+        </linearGradient>
+        <linearGradient id="eg2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#2f8f66" />
+          <stop offset="100%" stop-color="#1a5c41" />
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="88" fill="url(#eg1)" opacity="0.78" />
+      <circle cx="100" cy="100" r="78" fill="none" stroke="rgba(255,255,255,0.76)" stroke-width="2.6" />
+      <circle cx="100" cy="100" r="58" fill="none" stroke="url(#eg2)" stroke-width="5" stroke-dasharray="9 7" />
+      <circle cx="100" cy="100" r="42" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" />
+      <path d="M100 62 L118 98 L100 138 L82 98 Z" fill="url(#eg2)" opacity="0.94" />
+      <path d="M68 110 L132 110" stroke="#266f4f" stroke-width="3.2" stroke-linecap="round" />
+      <path d="M100 70 L100 136" stroke="rgba(255,255,255,0.82)" stroke-width="2.2" />
+      <text x="100" y="33" text-anchor="middle" style="font-size:8px;letter-spacing:0.2em;">SJTU</text>
+      <text x="100" y="165" text-anchor="middle" style="font-size:7.3px;letter-spacing:0.18em;">CULTURAL INDUSTRY MANAGEMENT</text>
+      <text x="100" y="177" text-anchor="middle" style="font-size:7px;letter-spacing:0.12em;">EST. 1896</text>
+    </svg>
+    <span class="tag">CMI</span>
+  </div>
+
+  <div class="hud">
+    <span class="meta" id="pageInfo">01 / 11</span>
+    <button id="prevBtn" type="button">上一页</button>
+    <button id="nextBtn" type="button">下一页</button>
+    <button id="jumpBtn" type="button">跳转</button>
+    <button id="noteBtn" type="button">讲稿</button>
+  </div>
+
+  <canvas class="fx-particles" id="particleCanvas" aria-hidden="true"></canvas>
+
+  <main class="deck forward" id="deck">
+    <section class="slide v1 active layout-balance zoom-cam" data-fx="orbit" data-title-token="OPENING" data-core="这不是单次翻车，而是内容争议升级为性别对立的公共事件。" data-title-x="50" data-title-y="8" data-title-scale="1.08" data-title-rotate="0" data-emblem-x="10" data-emblem-y="62" data-emblem-scale="1.14" data-emblem-rotate="-8" data-relay-x="72" data-relay-y="24" data-relay-scale="1.1" data-relay-rotate="-2" data-relay-width="250" data-relay-height="64" data-relay-label="OPENING" data-note="大家好，我是李木子，来自上海交通大学文化产业管理专业。今天我汇报的主题是：从联动争议到性别对立。这个案例看起来像一次二游联动翻车，但本质上它已经是一个平台舆论、社群身份与性别情绪交织的公共事件。今天我主要讲它如何被一步步放大。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">CULTURE × TECHNOLOGY OVERVIEW</p>
+          <h1 class="title">从联动争议到性别对立</h1>
+          <p class="subtitle">以《尘白禁区》与《恋与深空》舆情风波为例</p>
+          <p class="subtitle">李木子｜上海交通大学 文化产业管理专业｜Pre：4月2日</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <p class="lead">文化与科技概论课程汇报<br>关键词：平台传播、情绪扩散、社群身份建构</p>
+            <div class="final-line">核心问题：内容争议为何会演变成性别对立？</div>
+          </section>
+          <aside class="img-slot mask-ellipse">
+            <div>
+              <strong>图片占位｜标题页主视觉</strong>
+              <span>可放：课程题目视觉海报 / 案例关键词拼贴图</span>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v2-intro" data-fx="sweep" data-title-token="GLOSSARY" data-core="先理解两款游戏与关键黑话，后续冲突才看得懂。" data-title-x="66" data-title-y="11" data-title-scale="1.02" data-title-rotate="2" data-emblem-x="72" data-emblem-y="16" data-emblem-scale="1" data-emblem-rotate="8" data-relay-x="72" data-relay-y="20" data-relay-scale="1.02" data-relay-rotate="-2" data-relay-width="236" data-relay-height="58" data-relay-label="GLOSSARY" data-note="在进入事件之前，我先用一页帮大家快速了解这两款游戏，以及几个关键词。尘白禁区是偏男性向的二次元射击游戏，核心围绕女性角色；恋与深空是典型乙女游戏，也就是女性向恋爱游戏。后面会反复出现几个词：男性向和女性向是情感投射方向不同；乙女游戏是女性向恋爱模拟；麻辣（ML）指玩家希望角色对自己有情感独占性；擦边指接近性暗示或尺度边界的内容。用一句话概括：一类强调我拥有角色，另一类强调角色爱我，这个差异为后面的冲突埋下基础。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">GAME INTRO · TERMINOLOGY</p>
+          <h2 class="title">游戏背景简介 & 一些“黑话”</h2>
+          <p class="subtitle">先把概念讲清楚，后面的冲突链路才容易理解</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;">两款游戏是什么？</h3>
+            <ul class="bullets" style="margin-top:8px;">
+              <li><b>《尘白禁区》</b>：男性向二次元射击游戏（主打女性角色）。</li>
+              <li><b>《恋与深空》</b>：女性向恋爱游戏（乙女向）。</li>
+            </ul>
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;margin-top:10px;">核心术语（快速理解冲突来源）</h3>
+            <ul class="bullets" style="margin-top:8px;">
+              <li><b>男性向 / 女性向</b>：目标玩家性别与情感投射对象不同。</li>
+              <li><b>乙女游戏</b>：女性玩家与男性角色建立恋爱关系。</li>
+              <li><b>麻辣（ML）</b>：玩家希望角色“只属于自己”的情感独占感。</li>
+              <li><b>擦边</b>：接近性暗示或尺度边界的内容表现。</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;">一句话总结差异</h3>
+            <div class="compare-big">
+              一个强调“我拥有角色”<br>一个强调“角色爱我”
+              <span>这种情感结构差异，会直接影响玩家对内容边界与联动尺度的判断。</span>
+            </div>
+            <div class="img-slot mask-ticket" style="margin-top:12px;min-height:170px;">
+              <div>
+                <strong>图片占位｜术语速览图</strong>
+                <span>可放：两款游戏角色对比 + 关键词注释图</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v2 layout-reverse" data-fx="sweep" data-title-token="CONTEXT" data-core="核心不是谁对谁错，而是争议如何被平台机制持续放大。" data-title-x="72" data-title-y="10" data-title-scale="0.98" data-title-rotate="6" data-emblem-x="76" data-emblem-y="14" data-emblem-scale="1.02" data-emblem-rotate="16" data-relay-x="73" data-relay-y="20" data-relay-scale="1.05" data-relay-rotate="-4" data-relay-width="220" data-relay-height="58" data-relay-label="CONTEXT" data-note="大家好，今天我想分享的，是一个看起来像二游联动翻车、但其实已经演变成平台舆论、社群身份和性别情绪交织的典型案例。它不是简单的活动取消，而是内容争议如何一步步被放大成两个社区、甚至更大范围的性别对立。今天的核心不是谁对谁错，而是它如何一步步变成了公共事件。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">CULTURE × TECHNOLOGY</p>
+          <h2 class="title">问题导入：这不是一次普通联动翻车</h2>
+          <p class="subtitle">内容争议被平台改写后，如何走向公共化冲突</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <p class="lead">这不是一个单纯的“活动取消”案例，而是一条完整链路：<br>内容争议被平台改写后，逐渐演化为社群身份冲突与性别情绪对立。</p>
+            <div class="mini-grid">
+              <div class="chip">关键词：平台放大</div>
+              <div class="chip">关键词：身份建构</div>
+              <div class="chip">关键词：情绪传播</div>
+              <div class="chip">关键词：品牌边界</div>
+            </div>
+          </section>
+          <aside class="img-slot mask-slant">
+            <img src="ppt_assets/placeholder_01.jpg" alt="封面主视觉" />
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v3 layout-stagger" data-fx="fold" data-title-token="SELECTION" data-core="该案例高度契合课程：文化产品逻辑与平台放大效应同时成立。" data-title-x="24" data-title-y="12" data-title-scale="1.04" data-title-rotate="-8" data-emblem-x="67" data-emblem-y="72" data-emblem-scale="0.9" data-emblem-rotate="-12" data-relay-x="77" data-relay-y="76" data-relay-scale="0.94" data-relay-rotate="8" data-relay-width="210" data-relay-height="54" data-relay-label="SELECTION" data-note="我选这个题目，是因为它完美契合这门课。一方面它是文化产品（二次元游戏），另一方面它高度依赖微博、B站、小红书这些平台传播。本来只是一次邮政联动和内容争议，结果在平台上被二次包装，最后变成了谁举报谁、谁在对立谁的公共讨论。B站搜索相关视频，标题已经全是魔法对轰、大规模举报、停服风波这种带火药味的表达。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">WHY THIS CASE</p>
+          <h2 class="title">为什么选这个案例</h2>
+          <p class="subtitle">从“游戏内容争议”到“平台性舆论事件”的教科书级样本</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <ul class="bullets">
+              <li>这是一次“游戏内容争议”升级为“平台性舆论事件”的典型案例。</li>
+              <li>议题同时涉及：游戏尺度、品牌联动、平台传播、社群情绪、性别叙事。</li>
+              <li>非常适合文化与科技概论：文化产品逻辑 + 平台技术放大效应。</li>
+            </ul>
+            <div class="flow">
+              <div>内容事件</div>
+              <div>平台传播</div>
+              <div>情绪极化</div>
+              <div>公共事件</div>
+            </div>
+          </section>
+          <aside class="img-slot mask-round">
+            <img src="ppt_assets/placeholder_02.jpg" alt="平台界面截图" />
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v4 layout-float zoom-cam" data-fx="orbit" data-title-token="BACKGROUND" data-core="冲突并非偶发，前期内容边界收紧已埋下系统性风险。" data-title-x="80" data-title-y="15" data-title-scale="1.08" data-title-rotate="10" data-emblem-x="8" data-emblem-y="18" data-emblem-scale="1.2" data-emblem-rotate="6" data-relay-x="13" data-relay-y="29" data-relay-scale="1.06" data-relay-rotate="-10" data-relay-width="232" data-relay-height="60" data-relay-label="BACKGROUND" data-note="这件事不是突然爆发的，它有前史。尘白禁区是一款以女性角色为主的射击游戏，但2024年3月官方就公告要隐藏男性后勤角色的立绘和故事；11月又进一步说，以后不再加男NPC，也不再写相关情节。也就是说，游戏的内容边界早就被推到了一个很敏感的位置，社区期待已经高度一致。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">BACKGROUND</p>
+          <h2 class="title">事件背景：争议其实早有苗头</h2>
+          <p class="subtitle">社区边界先被收紧，后续冲突才会迅速点燃</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <ul class="bullets">
+              <li>《尘白禁区》长期因“男性向尺度”被关注（18+游戏）。</li>
+              <li>2024年3月：官方隐藏所有男性后勤角色立绘与故事。</li>
+              <li>2024年11月：明确2.3版本起不再新增男NPC、不描写相关情节。</li>
+              <li>结论：社区边界早已非常敏感。</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;">时间线</h3>
+            <div class="timeline">
+              <article><b>长期</b>：尺度内容持续争议，受众结构逐步固化。</article>
+              <article><b>2024.03</b>：隐藏男性后勤角色内容，边界开始制度化。</article>
+              <article><b>2024.11</b>：不再新增男NPC，社区预期彻底收紧。</article>
+            </div>
+          </section>
+          <aside class="img-slot mask-round">
+            <div>
+              <strong>图片占位｜背景补充图</strong>
+              <span>可放：官方公告拼图 / 社区讨论词云</span>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v5 layout-balance" data-fx="sweep" data-title-token="TRIGGER" data-core="联动争议在三步内升级为运营信任危机。" data-title-x="16" data-title-y="70" data-title-scale="1.12" data-title-rotate="-4" data-emblem-x="78" data-emblem-y="41" data-emblem-scale="1.08" data-emblem-rotate="-2" data-relay-x="75" data-relay-y="44" data-relay-scale="1.1" data-relay-rotate="2" data-relay-width="260" data-relay-height="66" data-relay-label="TRIGGER" data-note="本页我按三步快速梳理事件经过：先是2月下旬高调官宣，引发大量期待；随后2月26日争议爆发，联动被迫终止；最后3月2日深夜官方紧急停服，事件从联动翻车升级为运营信任危机。更关键的是，这次事件不仅损失商业合作，更明显暴露了项目组在IP合作风险评估与内容审核上的短板。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">FLASHPOINT</p>
+          <h2 class="title">事件经过：联动如何迅速翻车</h2>
+          <p class="subtitle">从高调官宣到停服维护，三步升级为信任危机</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;">三步时间线</h3>
+            <div class="timeline">
+              <article><b>第一步：高调官宣（2026年2月下旬）</b><br>官宣与中国邮政线下主题邮局联动，包含5城打卡活动及限量纪念礼盒，引发玩家期待。</article>
+              <article><b>第二步：争议爆发（2月26日）</b><br>游戏角色立绘被指“擦边”，与邮政形象不符遭大量举报，导致联动活动被迫紧急终止。</article>
+              <article><b>第三步：运营危机（3月2日深夜）</b><br>官方宣布紧急停服维护，未明确开服时间，事件从“联动翻车”升级为严重的运营信任危机。</article>
+            </div>
+          </section>
+          <section class="card">
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;">事件影响分析</h3>
+            <ul class="bullets" style="margin-top:8px;">
+              <li>此次事件不仅导致商业合作失败，更严重消耗了玩家对官方内容审核能力的信任。</li>
+              <li>从“联动”到“停服”的迅速恶化，暴露了项目组在IP合作风险评估上的严重缺失。</li>
+            </ul>
+            <div class="final-line">核心后果：短期联动受挫，长期信任受损。</div>
+            <div class="img-slot mask-ticket" style="margin-top:10px;min-height:138px;">
+              <img src="ppt_assets/placeholder_03.jpg" alt="联动公告与危机节点示意" />
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v6 layout-reverse" data-fx="fold" data-title-token="LINKAGE" data-core="同日公告让两个圈层被并置，跨圈冲突由此形成。" data-title-x="82" data-title-y="74" data-title-scale="0.95" data-title-rotate="12" data-emblem-x="18" data-emblem-y="74" data-emblem-scale="0.94" data-emblem-rotate="-18" data-relay-x="20" data-relay-y="72" data-relay-scale="0.9" data-relay-rotate="-6" data-relay-width="196" data-relay-height="52" data-relay-label="LINKAGE" data-note="风波没有停在尘白禁区。同一天晚上，恋与深空也发公告：原本计划在中国美术学院校内做的艺术疗愈联动，因为计划外情况，不得不取消校内场地，改到杭州市内其他地方。虽然活动日期不变，但这让两个游戏的玩家开始在同一个平台上互相看见、互相指责。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">SECOND LINE</p>
+          <h2 class="title">另一条线：《恋与深空》如何被卷入</h2>
+          <p class="subtitle">不同圈层在同一时间被拉进同一舆论场</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <ul class="bullets">
+              <li>3月2日晚：《恋与深空》发布公告。</li>
+              <li>原定中国美术学院内“步步绘心晴”联动（祁煜生日艺术疗愈活动）。</li>
+              <li>因“计划外情况”终止校内合作，改到杭州市内其他场地。</li>
+              <li>两个原本不同圈层的社区被拉进同一舆论场。</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;">影响机制</h3>
+            <div class="flow">
+              <div>同日公告</div>
+              <div>叙事串联</div>
+              <div>跨圈可见</div>
+              <div>互相归因</div>
+            </div>
+            <div class="img-slot mask-diamond" style="margin-top:12px;min-height:172px;transform:translate(-18px, 10px) rotate(2deg);">
+              <img src="ppt_assets/placeholder_04.jpg" alt="活动场地变化" />
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v7 layout-stagger" data-fx="orbit" data-title-token="AMPLIFY" data-core="平台不只传播信息，还主动重构叙事并放大情绪。" data-title-x="44" data-title-y="10" data-title-scale="1.12" data-title-rotate="16" data-emblem-x="55" data-emblem-y="10" data-emblem-scale="1.12" data-emblem-rotate="20" data-relay-x="61" data-relay-y="18" data-relay-scale="1.02" data-relay-rotate="12" data-relay-width="246" data-relay-height="58" data-relay-label="AMPLIFY" data-note="最关键的是平台的作用。微博上大家还在讨论事实；B站很多视频直接把事件包装成对轰大战；小红书上甚至有帖子公开说举报成功只是第一步，要集中火力。平台没有只是传播，它在帮事件换叙事框架，把游戏尺度问题变成了我们对他们的身份冲突。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">PLATFORM AMPLIFICATION</p>
+          <h2 class="title">平台扩散：争议如何变成“对立”</h2>
+          <p class="subtitle">平台不仅传信息，也在重塑问题框架</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <ul class="bullets">
+              <li>微博：聚焦“联动取消”“停服”“举报”等事实节点。</li>
+              <li>B站：标题大量使用“魔法对轰”“大规模举报”“大举报时代”。</li>
+              <li>小红书：部分帖子称“举报成功只是第一步”“集中火力”。</li>
+              <li>结果：内容争议 → 社群身份标签 → 性别情绪对立。</li>
+            </ul>
+            <div class="final-line">平台作用：传播 + 框架重构 + 情绪放大</div>
+          </section>
+          <aside class="img-slot mask-ellipse">
+            <img src="ppt_assets/placeholder_05.jpg" alt="三平台对比" />
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v8 layout-float zoom-cam" data-fx="sweep" data-title-token="METHOD" data-core="用时间线+跨平台文本，解释争议如何被转译成身份对立。" data-title-x="22" data-title-y="82" data-title-scale="1.06" data-title-rotate="-3" data-emblem-x="38" data-emblem-y="76" data-emblem-scale="1.06" data-emblem-rotate="0" data-relay-x="45" data-relay-y="82" data-relay-scale="1.08" data-relay-rotate="-3" data-relay-width="238" data-relay-height="62" data-relay-label="METHOD" data-note="我的分析不会太学术，就用三种简单方法：先捋时间线确认发生了什么；再对比不同平台怎么讲同一件事；最后看这些讲法如何把内容争议变成身份对立。比如传播学里有个框架理论，简单说就是同一件事被不同框架包装后，大家看到的就不再是同一个事件，而是不同阵营的故事。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">METHOD</p>
+          <h2 class="title">我的研究方法（轻量版）</h2>
+          <p class="subtitle">案例研究 + 多平台话语分析 + 时间线梳理</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <ul class="bullets">
+              <li>方法：案例研究 + 多平台话语分析 + 时间线梳理。</li>
+              <li>材料来源：官方公告、媒体报道、B站标题/评论、小红书讨论。</li>
+              <li>分析角度：框架理论、情绪传播、他者化。</li>
+            </ul>
+            <div class="flow">
+              <div>时间线</div>
+              <div>跨平台文本</div>
+              <div>叙事框架</div>
+              <div>身份后果</div>
+            </div>
+          </section>
+          <section class="card">
+            <h3 class="subtitle" style="font-size:20px;color:var(--ink-strong);font-weight:700;">一句话方法论</h3>
+            <p class="lead" style="margin-top:8px;">同一事件在不同平台被不同方式“命名”后，受众接收的已是不同故事，而非同一事实。</p>
+            <div class="img-slot mask-slant" style="margin-top:12px;min-height:238px;">
+              <img src="ppt_assets/placeholder_06.jpg" alt="研究路径示意图" />
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v9 layout-balance" data-fx="fold" data-title-token="POLARIZE" data-core="关键转折：争议对象从作品内容迁移为社群身份。" data-title-x="12" data-title-y="50" data-title-scale="1.2" data-title-rotate="8" data-emblem-x="10" data-emblem-y="44" data-emblem-scale="1.26" data-emblem-rotate="8" data-relay-x="14" data-relay-y="49" data-relay-scale="1.18" data-relay-rotate="7" data-relay-width="286" data-relay-height="68" data-relay-label="POLARIZE" data-note="这里我想重点说说为什么会变成性别对立。联动取消后，尘白禁区玩家觉得凭什么我们被举报，恋与深空以前也联邮政、也有亲密剧情却没事，于是开始反向举报对方。小红书上有帖子直接喊集中火力，B站评论区则刷满双标、黄油这些词。原本是游戏内容尺度问题，最后变成了两个社区互相贴标签、互相攻击的性别情绪大战。社群身份一旦被激活，争议就不再是内容本身，而是我们和他们的对立。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">CORE ANALYSIS</p>
+          <h2 class="title">分析：争议如何演变为性别对立</h2>
+          <p class="subtitle">从“尺度不适”到“身份对战”的关键转折</p>
+        </header>
+        <div class="content">
+          <section class="card">
+            <div class="flow" style="grid-template-columns:repeat(4,minmax(0,1fr));">
+              <div>起点：尺度不适</div>
+              <div>转折：互指双标</div>
+              <div>升级：互相举报</div>
+              <div>结果：性别对战</div>
+            </div>
+            <ul class="bullets" style="margin-top:14px;">
+              <li>B站/小红书高频出现“谁更黄”“男玩家 vs 女玩家”等对战表达。</li>
+              <li>争议不再围绕“内容是否合规”，而转向“谁在压制谁”的身份叙事。</li>
+              <li>本质：社群越强，越容易把内容问题转译为身份问题。</li>
+            </ul>
+            <div class="final-line">争议对象迁移：作品内容 → 社群身份</div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v10 layout-reverse" data-fx="orbit" data-title-token="INSIGHT" data-core="平台时代的联动，本质是文化关系管理而非单纯营销。" data-title-x="86" data-title-y="56" data-title-scale="0.92" data-title-rotate="-14" data-emblem-x="80" data-emblem-y="58" data-emblem-scale="0.92" data-emblem-rotate="-15" data-relay-x="80" data-relay-y="61" data-relay-scale="0.92" data-relay-rotate="-9" data-relay-width="228" data-relay-height="52" data-relay-label="INSIGHT" data-note="从这门课的角度看，这件事最有启发的地方在于：今天的游戏联动不只是商业合作，它其实是一种平台化的文化传播。技术本身没有制造分歧，但它让分歧传播得更快、更广、也更可见。社群越团结，就越容易把内容问题变成身份标签。最后轻轻说一句哲学味道的话，平台帮助我们快速建构出了他者，结果事件本身反而没人关心了。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">COURSE INSIGHT</p>
+          <h2 class="title">这件事对《文化与科技》的启发</h2>
+          <p class="subtitle">平台时代的文化产品，不只需要营销能力</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <ul class="bullets">
+              <li>技术平台会放大文化产品的边界冲突。</li>
+              <li>社群越强，越容易把内容争议转化为身份争议。</li>
+              <li>联动不仅是营销，更是“文化关系管理”。</li>
+              <li>平台让“他者”被快速建构，事件本身反而退居其次。</li>
+            </ul>
+          </section>
+          <aside class="img-slot mask-ticket">
+            <img src="ppt_assets/placeholder_07.jpg" alt="理论页视觉" />
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="slide v11 layout-stagger zoom-cam" data-fx="sweep" data-title-token="CONCLUDE" data-core="结论：内容争议经平台放大后，会演化为社群对立与品牌风险。" data-title-x="48" data-title-y="16" data-title-scale="1.2" data-title-rotate="2" data-emblem-x="46" data-emblem-y="18" data-emblem-scale="1.2" data-emblem-rotate="2" data-relay-x="47" data-relay-y="20" data-relay-scale="1.16" data-relay-rotate="0" data-relay-width="300" data-relay-height="72" data-relay-label="CONCLUDE" data-note="最后我想总结成一句话：它不是一次普通的联动失败，而是一次典型的内容争议被平台放大后，最终变成社区对立和品牌危机的完整链条。对游戏公司来说，联动不仅是营销，更是一次对平台环境、社群情绪和品牌边界的综合测试。谢谢大家。">
+      <article class="surface">
+        <header class="heading">
+          <p class="kicker">CONCLUSION</p>
+          <h2 class="title">结论页</h2>
+          <p class="subtitle">内容争议 → 平台扩散 → 社群对立 → 品牌止损</p>
+        </header>
+        <div class="content split">
+          <section class="card">
+            <ul class="bullets">
+              <li>这不是单纯的“联动翻车”。</li>
+              <li>而是一次“内容争议 → 平台扩散 → 社群对立 → 品牌止损”的完整链条。</li>
+              <li>对游戏公司：联动 = 营销 + 风险管理。</li>
+              <li>启示：文化产品在平台时代，需要更谨慎的边界管理。</li>
+            </ul>
+            <div class="final-line">谢谢大家！</div>
+          </section>
+          <aside class="img-slot mask-round">
+            <img src="ppt_assets/placeholder_08.jpg" alt="收束页视觉" />
+          </aside>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div class="dotbar" id="dotbar"></div>
+
+  <aside class="notes" id="notes">
+    <h3>PRESENTER NOTES</h3>
+    <p id="noteText">本页讲稿</p>
+  </aside>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progressBar = document.getElementById('progressBar');
+    const pageInfo = document.getElementById('pageInfo');
+    const deck = document.getElementById('deck');
+    const dotbar = document.getElementById('dotbar');
+    const notes = document.getElementById('notes');
+    const noteText = document.getElementById('noteText');
+    const continuumNode = document.getElementById('continuumNode');
+    const relay = document.getElementById('relay');
+    const relayCore = document.getElementById('relayCore');
+    const relayLabel = document.getElementById('relayLabel');
+    const emblem = document.getElementById('emblem');
+    const particleCanvas = document.getElementById('particleCanvas');
+    const pctx = particleCanvas.getContext('2d');
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const jumpBtn = document.getElementById('jumpBtn');
+    const noteBtn = document.getElementById('noteBtn');
+
+    let current = 0;
+    let wheelLock = false;
+    let isTransitioning = false;
+
+    const particles = [];
+    const bursts = [];
+
+    slides.forEach((_, index) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', '跳转到第' + (index + 1) + '页');
+      d.addEventListener('click', () => setSlide(index));
+      dotbar.appendChild(d);
+    });
+
+    const dots = Array.from(dotbar.querySelectorAll('button'));
+
+    slides.forEach((slide) => {
+      const heading = slide.querySelector('.heading');
+      if (!heading) return;
+      const token = slide.dataset.titleToken || 'TOPIC';
+      const core = slide.dataset.core || '请在本页补充核心观点';
+
+      const chip = document.createElement('p');
+      chip.className = 'focus-chip';
+      chip.textContent = 'SECTION · ' + token;
+
+      const coreLine = document.createElement('p');
+      coreLine.className = 'core-line';
+      coreLine.textContent = core;
+
+      const surface = slide.querySelector('.surface');
+      if (surface && !surface.querySelector('.slide-foot')) {
+        const foot = document.createElement('footer');
+        foot.className = 'slide-foot';
+        foot.innerHTML = '<span class="tag">文化与科技概论 · 案例分析</span><span class="meta">SJTU CMI · 2026.04</span><span class="page">P.01</span>';
+        surface.appendChild(foot);
+      }
+
+      heading.prepend(chip);
+      heading.appendChild(coreLine);
+    });
+
+    function resizeParticles() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      particleCanvas.width = Math.floor(window.innerWidth * dpr);
+      particleCanvas.height = Math.floor(window.innerHeight * dpr);
+      particleCanvas.style.width = window.innerWidth + 'px';
+      particleCanvas.style.height = window.innerHeight + 'px';
+      pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function seedParticles() {
+      particles.length = 0;
+      const count = Math.max(96, Math.floor(window.innerWidth / 14));
+      for (let i = 0; i < count; i += 1) {
+        particles.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          r: 1.8 + Math.random() * 3.8,
+          vx: -0.42 + Math.random() * 0.84,
+          vy: -0.4 + Math.random() * 0.8,
+          a: 0.36 + Math.random() * 0.38,
+          hue: 130 + Math.random() * 40,
+        });
+      }
+    }
+
+    function spawnBurst(direction) {
+      const cx = direction > 0 ? window.innerWidth * 0.72 : window.innerWidth * 0.28;
+      const cy = window.innerHeight * 0.48;
+      for (let i = 0; i < 34; i += 1) {
+        const angle = (Math.PI * 2 * i) / 34 + Math.random() * 0.36;
+        const speed = 1.8 + Math.random() * 3.4;
+        bursts.push({
+          x: cx,
+          y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 42 + Math.floor(Math.random() * 24),
+          age: 0,
+          r: 1.6 + Math.random() * 3.4,
+          hue: 138 + Math.random() * 28,
+        });
+      }
+    }
+
+    function drawParticles() {
+      pctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      for (let i = 0; i < particles.length; i += 1) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -10) p.x = window.innerWidth + 10;
+        if (p.x > window.innerWidth + 10) p.x = -10;
+        if (p.y < -10) p.y = window.innerHeight + 10;
+        if (p.y > window.innerHeight + 10) p.y = -10;
+
+        pctx.beginPath();
+        pctx.fillStyle = 'hsla(' + p.hue + ', 84%, 86%, ' + p.a + ')';
+        pctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        pctx.fill();
+      }
+
+      for (let i = bursts.length - 1; i >= 0; i -= 1) {
+        const b = bursts[i];
+        b.x += b.vx;
+        b.y += b.vy;
+        b.vx *= 0.98;
+        b.vy *= 0.98;
+        b.age += 1;
+        const t = 1 - b.age / b.life;
+        if (t <= 0) {
+          bursts.splice(i, 1);
+          continue;
+        }
+        pctx.beginPath();
+        pctx.fillStyle = 'hsla(' + b.hue + ', 92%, 86%, ' + (0.82 * t) + ')';
+        pctx.arc(b.x, b.y, b.r * (0.4 + t), 0, Math.PI * 2);
+        pctx.fill();
+      }
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    function render() {
+      const total = slides.length;
+      slides[current].classList.add('active');
+
+      const active = slides[current];
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === current);
+      });
+
+      progressBar.style.width = ((current + 1) / total) * 100 + '%';
+      pageInfo.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+      noteText.textContent = slides[current].dataset.note || '本页暂无讲稿。';
+
+      slides.forEach((slide, i) => {
+        const pageNode = slide.querySelector('.slide-foot .page');
+        if (pageNode) {
+          pageNode.textContent = 'P.' + String(i + 1).padStart(2, '0');
+        }
+        const foot = slide.querySelector('.slide-foot');
+        if (foot) {
+          foot.style.opacity = i === current ? '1' : '0.72';
+        }
+      });
+
+      const ratio = total > 1 ? current / (total - 1) : 0;
+      continuumNode.style.top = (4 + ratio * 92) + '%';
+      continuumNode.style.transform = 'scale(' + (1 + ratio * 0.05) + ')';
+      const relayX = Number(active.dataset.relayX || 76);
+      const relayY = Number(active.dataset.relayY || 22);
+      const relayScale = Number(active.dataset.relayScale || 1);
+      const relayRotate = Number(active.dataset.relayRotate || 0);
+      const relayWidth = Number(active.dataset.relayWidth || 200);
+      const relayHeight = Number(active.dataset.relayHeight || 54);
+      const relayText = active.dataset.relayLabel || 'FRAME';
+
+      relay.style.transform = 'translate(' + relayX + 'vw, ' + relayY + 'vh) scale(' + relayScale + ') rotate(' + relayRotate + 'deg)';
+      relayCore.style.minWidth = relayWidth + 'px';
+      relayCore.style.height = relayHeight + 'px';
+      relayLabel.style.opacity = '0.18';
+      setTimeout(() => {
+        relayLabel.textContent = relayText;
+        relayLabel.style.opacity = '1';
+      }, 180);
+
+      const ebx = Math.sin(current * 0.72) * 16;
+      const eby = Math.cos(current * 0.68) * 18;
+      const emx = Math.sin(current * 0.62 + 0.4) * 10;
+      const emy = Math.cos(current * 0.52 + 0.7) * 12;
+      const efx = Math.sin(current * 0.58 + 1.2) * 12;
+      const efy = Math.cos(current * 0.74 + 0.3) * 14;
+      const surface = active.querySelector('.surface');
+      if (surface) {
+        surface.style.setProperty('--back-shift-x', ebx + 'px');
+        surface.style.setProperty('--back-shift-y', eby + 'px');
+        surface.style.setProperty('--mid-shift-x', emx + 'px');
+        surface.style.setProperty('--mid-shift-y', emy + 'px');
+        surface.style.setProperty('--front-shift-x', efx + 'px');
+        surface.style.setProperty('--front-shift-y', efy + 'px');
+      }
+    }
+
+    function applyEmblemState(index, withBridge) {
+      const slide = slides[index];
+      const ex = Number(slide.dataset.emblemX || 8);
+      const ey = Number(slide.dataset.emblemY || 66);
+      const er = Number(slide.dataset.emblemRotate || 0);
+      const es = Number(slide.dataset.emblemScale || 1);
+      emblem.style.transition = (withBridge ? 'transform 1080ms var(--ease), opacity 760ms ease' : 'transform 1240ms var(--ease), opacity 820ms ease');
+      emblem.style.transform = 'translate(' + ex + 'vw, ' + ey + 'vh) rotate(' + er + 'deg) scale(' + es + ')';
+      emblem.style.opacity = '0.32';
+      emblem.classList.remove('bridgeing');
+    }
+
+    function bridgeEmblem(forward) {
+      const cornerX = forward ? 88 : 4;
+      const cornerY = 6;
+      const cornerR = forward ? 20 : -20;
+      emblem.classList.add('bridgeing');
+      emblem.style.transition = 'transform 420ms var(--ease), opacity 420ms ease';
+      emblem.style.transform = 'translate(' + cornerX + 'vw, ' + cornerY + 'vh) rotate(' + cornerR + 'deg) scale(0.44)';
+      emblem.style.opacity = '0.22';
+    }
+
+    function setDirection(nextIndex) {
+      deck.classList.toggle('forward', nextIndex >= current);
+      deck.classList.toggle('backward', nextIndex < current);
+    }
+
+    function setSlide(nextIndex) {
+      const clamped = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      if (clamped === current || isTransitioning) return;
+      isTransitioning = true;
+      setDirection(clamped);
+      const forward = clamped > current;
+      const outgoing = slides[current];
+      const incoming = slides[clamped];
+      const fx = incoming.dataset.fx || 'default';
+      const durationMap = {
+        default: 1240,
+        orbit: 1580,
+        fold: 1460,
+        sweep: 1520,
+      };
+      const cleanupDelay = (durationMap[fx] || 1240) + 120;
+
+      incoming.classList.add('active', 'entering', forward ? 'forward' : 'backward');
+      outgoing.classList.add('leaving', forward ? 'forward' : 'backward');
+      if (fx !== 'default') {
+        incoming.classList.add('fx-' + fx);
+        outgoing.classList.add('fx-' + fx);
+      }
+
+      spawnBurst(forward ? 1 : -1);
+      bridgeEmblem(forward);
+
+      current = clamped;
+      render();
+
+      setTimeout(() => {
+        applyEmblemState(current, true);
+      }, 220);
+
+      setTimeout(() => {
+        outgoing.classList.remove('active', 'leaving', 'forward', 'backward', 'fx-orbit', 'fx-fold', 'fx-sweep');
+        incoming.classList.remove('entering', 'forward', 'backward', 'fx-orbit', 'fx-fold', 'fx-sweep');
+        isTransitioning = false;
+      }, cleanupDelay);
+    }
+
+    function go(step) {
+      setSlide(current + step);
+    }
+
+    function openJumpPrompt() {
+      const total = slides.length;
+      const input = window.prompt('输入要跳转的页码（1-' + total + '）', String(current + 1));
+      if (input === null) return;
+      const page = Number(input.trim());
+      if (!Number.isInteger(page) || page < 1 || page > total) {
+        window.alert('页码无效，请输入 1 到 ' + total + ' 的整数。');
+        return;
+      }
+      setSlide(page - 1);
+    }
+
+    prevBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      go(-1);
+    });
+
+    nextBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      go(1);
+    });
+
+    jumpBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      openJumpPrompt();
+    });
+
+    noteBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      notes.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target.closest('.hud') || target.closest('.dotbar') || target.closest('.notes')) {
+        return;
+      }
+      go(1);
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+        event.preventDefault();
+        go(1);
+      }
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        event.preventDefault();
+        go(-1);
+      }
+      if (event.key === 'Home') {
+        event.preventDefault();
+        setSlide(0);
+      }
+      if (event.key === 'End') {
+        event.preventDefault();
+        setSlide(slides.length - 1);
+      }
+      if (event.key.toLowerCase() === 'n') {
+        notes.classList.toggle('show');
+      }
+      if (event.key.toLowerCase() === 'g') {
+        event.preventDefault();
+        openJumpPrompt();
+      }
+    });
+
+    window.addEventListener('wheel', (event) => {
+      if (wheelLock || Math.abs(event.deltaY) < 14) return;
+      wheelLock = true;
+      setTimeout(() => {
+        wheelLock = false;
+      }, 620);
+
+      if (event.deltaY > 0) go(1);
+      else go(-1);
+    }, { passive: true });
+
+    let touchStartY = null;
+
+    window.addEventListener('resize', () => {
+      resizeParticles();
+      seedParticles();
+    });
+
+    window.addEventListener('touchstart', (event) => {
+      touchStartY = event.changedTouches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (event) => {
+      if (touchStartY === null) return;
+      const dy = event.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dy) > 48) {
+        if (dy < 0) go(1);
+        else go(-1);
+      }
+      touchStartY = null;
+    }, { passive: true });
+
+    render();
+    resizeParticles();
+    seedParticles();
+    drawParticles();
+    applyEmblemState(0, false);
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Python cache
+**/__pycache__/
+*.pyc
+
+# Local virtual environments
+environments/pvz_env/
+
+# Embedded standalone repository (managed separately)
+projects/TheRiseOfBloodyWolf/
+
+# Temporary scratch files
+scratch/

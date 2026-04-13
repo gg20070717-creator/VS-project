@@ -1,0 +1,109 @@
+model_list:
+  # Claude Code recognizes Anthropic-style model IDs.
+  # We map those IDs to different GitHub Copilot models.
+  - model_name: claude-opus-4-6
+    litellm_params:
+      model: github_copilot/gpt-4o
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: github_copilot/gpt-4.1
+  - model_name: claude-haiku-4-5
+    litellm_params:
+      model: github_copilot/gpt-4o-mini
+
+  - model_name: github_copilot/claude-haiku-4.5
+    litellm_params:
+      model: github_copilot/claude-haiku-4.5
+  - model_name: github_copilot/claude-opus-4.5
+    litellm_params:
+      model: github_copilot/claude-opus-4.5
+  - model_name: github_copilot/claude-opus-4.6-fast
+    litellm_params:
+      model: github_copilot/claude-opus-4.6-fast
+  - model_name: github_copilot/claude-opus-41
+    litellm_params:
+      model: github_copilot/claude-opus-41
+  - model_name: github_copilot/claude-sonnet-4
+    litellm_params:
+      model: github_copilot/claude-sonnet-4
+  - model_name: github_copilot/claude-sonnet-4.5
+    litellm_params:
+      model: github_copilot/claude-sonnet-4.5
+  - model_name: github_copilot/gemini-2.5-pro
+    litellm_params:
+      model: github_copilot/gemini-2.5-pro
+  - model_name: github_copilot/gemini-3-pro-preview
+    litellm_params:
+      model: github_copilot/gemini-3-pro-preview
+  - model_name: github_copilot/gpt-3.5-turbo
+    litellm_params:
+      model: github_copilot/gpt-3.5-turbo
+  - model_name: github_copilot/gpt-3.5-turbo-0613
+    litellm_params:
+      model: github_copilot/gpt-3.5-turbo-0613
+  - model_name: github_copilot/gpt-4
+    litellm_params:
+      model: github_copilot/gpt-4
+  - model_name: github_copilot/gpt-4-0613
+    litellm_params:
+      model: github_copilot/gpt-4-0613
+  - model_name: github_copilot/gpt-4-o-preview
+    litellm_params:
+      model: github_copilot/gpt-4-o-preview
+  - model_name: github_copilot/gpt-4.1
+    litellm_params:
+      model: github_copilot/gpt-4.1
+  - model_name: github_copilot/gpt-4.1-2025-04-14
+    litellm_params:
+      model: github_copilot/gpt-4.1-2025-04-14
+  - model_name: github_copilot/gpt-41-copilot
+    litellm_params:
+      model: github_copilot/gpt-41-copilot
+  - model_name: github_copilot/gpt-4o
+    litellm_params:
+      model: github_copilot/gpt-4o
+  - model_name: github_copilot/gpt-4o-2024-05-13
+    litellm_params:
+      model: github_copilot/gpt-4o-2024-05-13
+  - model_name: github_copilot/gpt-4o-2024-08-06
+    litellm_params:
+      model: github_copilot/gpt-4o-2024-08-06
+  - model_name: github_copilot/gpt-4o-2024-11-20
+    litellm_params:
+      model: github_copilot/gpt-4o-2024-11-20
+  - model_name: github_copilot/gpt-4o-mini
+    litellm_params:
+      model: github_copilot/gpt-4o-mini
+  - model_name: github_copilot/gpt-4o-mini-2024-07-18
+    litellm_params:
+      model: github_copilot/gpt-4o-mini-2024-07-18
+  - model_name: github_copilot/gpt-5
+    litellm_params:
+      model: github_copilot/gpt-5
+  - model_name: github_copilot/gpt-5-mini
+    litellm_params:
+      model: github_copilot/gpt-5-mini
+  - model_name: github_copilot/gpt-5.1
+    litellm_params:
+      model: github_copilot/gpt-5.1
+  - model_name: github_copilot/gpt-5.1-codex-max
+    litellm_params:
+      model: github_copilot/gpt-5.1-codex-max
+  - model_name: github_copilot/gpt-5.2
+    litellm_params:
+      model: github_copilot/gpt-5.2
+  - model_name: github_copilot/gpt-5.3-codex
+    litellm_params:
+      model: github_copilot/gpt-5.3-codex
+  - model_name: github_copilot/text-embedding-3-small
+    litellm_params:
+      model: github_copilot/text-embedding-3-small
+  - model_name: github_copilot/text-embedding-3-small-inference
+    litellm_params:
+      model: github_copilot/text-embedding-3-small-inference
+  - model_name: github_copilot/text-embedding-ada-002
+    litellm_params:
+      model: github_copilot/text-embedding-ada-002
+
+general_settings:
+  master_key: litellm-local-key

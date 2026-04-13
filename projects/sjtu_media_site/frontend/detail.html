@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>详情页面 | 上海交通大学媒体与传播学院</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="page-noise"></div>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <div class="official-strip">
+    <p>上海交通大学媒体与传播学院</p>
+    <p>School of Media and Communication · Official Portal</p>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">SJTU • SMC</div>
+    <nav>
+      <a href="/">返回首页</a>
+      <a href="/detail?type=faculty">师资队伍</a>
+      <a href="/detail?type=notices">通知公告</a>
+      <a href="/detail?type=events">学术活动</a>
+      <a href="/detail?type=program">人才培养</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="detail-banner section reveal">
+      <p id="breadcrumb" class="breadcrumb">首页 / 详情</p>
+      <h1 id="detail-title" class="detail-title">详情页</h1>
+      <p id="detail-subtitle" class="detail-subtitle">栏目内容说明</p>
+    </section>
+
+    <section class="section panel reveal-block detail-shell">
+      <div class="section-head">
+        <h2>栏目正文</h2>
+        <a class="inline-detail-link" href="/">回到首页</a>
+      </div>
+      <div id="detail-content" class="detail-content"></div>
+      <div class="detail-pager">
+        <a id="prev-link" class="pager-link" href="/">上一篇</a>
+        <a id="next-link" class="pager-link" href="/">下一篇</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>上海交通大学媒体与传播学院 · 文化产业管理专业</p>
+    <p>Detail Experience</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="/static/detail.js"></script>
+</body>
+</html>

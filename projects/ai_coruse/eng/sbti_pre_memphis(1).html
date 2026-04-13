@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBTI Speech Deck - Memphis Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Archivo+Black&family=Nunito:wght@400;700;900&family=Bangers&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================================
+       BASE RESET
+       =========================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===========================================
+       VIEWPORT FITTING: MANDATORY BASE STYLES
+       Include this ENTIRE file in every presentation.
+       These styles ensure slides fit exactly in the viewport.
+       =========================================== */
+
+    /* 1. Lock html/body to viewport */
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    /* 2. Each slide = exact viewport height */
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* 3. Content container with flex for centering */
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-height: 100%;
+      overflow: hidden;
+      padding: var(--slide-padding);
+    }
+
+    /* 4. ALL typography uses clamp() for responsive scaling */
+    :root {
+      --title-size: clamp(1.5rem, 5vw, 4rem);
+      --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+      --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+
+      --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+      --small-size: clamp(0.65rem, 1vw, 0.875rem);
+
+      --slide-padding: clamp(1rem, 4vw, 4rem);
+      --content-gap: clamp(0.5rem, 2vw, 2rem);
+      --element-gap: clamp(0.25rem, 1vw, 1rem);
+    }
+
+    /* 5. Cards/containers use viewport-relative max sizes */
+    .card, .container, .content-box {
+      max-width: min(90vw, 1000px);
+      max-height: min(80vh, 700px);
+    }
+
+    /* 6. Lists auto-scale with viewport */
+    .feature-list, .bullet-list {
+      gap: clamp(0.4rem, 1vh, 1rem);
+    }
+
+    .feature-list li, .bullet-list li {
+      font-size: var(--body-size);
+      line-height: 1.4;
+    }
+
+    /* 7. Grids adapt to available space */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: clamp(0.5rem, 1.5vw, 1rem);
+    }
+
+    /* 8. Images constrained to viewport */
+    img, .image-container {
+      max-width: 100%;
+      max-height: min(50vh, 400px);
+      object-fit: contain;
+    }
+
+    /* ===========================================
+       RESPONSIVE BREAKPOINTS
+       Aggressive scaling for smaller viewports
+       =========================================== */
+
+    /* Short viewports (< 700px height) */
+    @media (max-height: 700px) {
+      :root {
+        --slide-padding: clamp(0.75rem, 3vw, 2rem);
+        --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+        --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+        --h2-size: clamp(1rem, 3vw, 1.75rem);
+      }
+    }
+
+    /* Very short viewports (< 600px height) */
+    @media (max-height: 600px) {
+      :root {
+        --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+        --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+        --title-size: clamp(1.1rem, 4vw, 2rem);
+        --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+      }
+
+      .nav-dots, .keyboard-hint, .decorative {
+        display: none;
+      }
+    }
+
+    /* Extremely short (landscape phones, < 500px height) */
+    @media (max-height: 500px) {
+      :root {
+        --slide-padding: clamp(0.4rem, 2vw, 1rem);
+        --title-size: clamp(1rem, 3.5vw, 1.5rem);
+        --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+        --body-size: clamp(0.65rem, 1vw, 0.85rem);
+      }
+    }
+
+    /* Narrow viewports (< 600px width) */
+    @media (max-width: 600px) {
+      :root {
+        --title-size: clamp(1.25rem, 7vw, 2.5rem);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===========================================
+       MEMPHIS THEME TOKENS
+       =========================================== */
+    :root {
+      --memphis-red: #ff0000;
+      --memphis-yellow: #ffd700;
+      --memphis-blue: #0000ff;
+      --memphis-pink: #ff69b4;
+      --memphis-green: #00ff00;
+      --memphis-orange: #ff6600;
+      --memphis-purple: #9b59b6;
+      --memphis-teal: #00ced1;
+      --memphis-black: #000000;
+      --memphis-white: #ffffff;
+      --memphis-cream: #fff8dc;
+
+      --gradient-hot: linear-gradient(135deg, #ff0000 0%, #ff69b4 50%, #ffd700 100%);
+      --gradient-pop: linear-gradient(90deg, #ffd700 0%, #ff6600 50%, #ff0000 100%);
+      --gradient-electric: linear-gradient(135deg, #0000ff 0%, #00ff00 100%);
+
+      --stroke-width: 3px;
+      --shadow-hard: 6px 6px 0 var(--memphis-black);
+      --shadow-hard-hover: 10px 10px 0 var(--memphis-black);
+
+      --font-display: 'Fredoka One', cursive;
+      --font-experimental: 'Archivo Black', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+      --font-accent: 'Bangers', cursive;
+
+      --focus-ring: 0 0 0 4px rgba(0, 102, 255, 0.26);
+      --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-normal: 0.6s;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--memphis-cream);
+      color: var(--memphis-black);
+      line-height: 1.45;
+    }
+
+    /* ===========================================
+       GLOBAL DECK UI
+       =========================================== */
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: rgba(0, 0, 0, 0.08);
+      z-index: 120;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: var(--gradient-hot);
+      transition: width 0.35s var(--ease-out-expo);
+    }
+
+    .nav-dots {
+      position: fixed;
+      right: clamp(8px, 1.6vw, 18px);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 110;
+    }
+
+    .nav-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--memphis-black);
+      background: var(--memphis-white);
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--memphis-black);
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .nav-dot:hover,
+    .nav-dot:focus-visible {
+      transform: translate(-1px, -1px) scale(1.07);
+      outline: none;
+      box-shadow: 3px 3px 0 var(--memphis-black), var(--focus-ring);
+    }
+
+    .nav-dot.active {
+      background: var(--memphis-pink);
+      transform: scale(1.06);
+    }
+
+    .keyboard-hint {
+      position: fixed;
+      bottom: clamp(8px, 1.8vh, 14px);
+      right: clamp(10px, 1.8vw, 20px);
+      z-index: 108;
+      font-size: var(--small-size);
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid var(--memphis-black);
+      border-radius: 999px;
+      padding: 6px 12px;
+      box-shadow: 3px 3px 0 var(--memphis-black);
+    }
+
+    /* ===========================================
+       MEMPHIS DECORATION LAYER
+       Delight mechanism: Geometry Follower
+       =========================================== */
+    .geo-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .geo-follower {
+      position: absolute;
+      border: var(--stroke-width) solid var(--memphis-black);
+      opacity: 0.92;
+      transition: transform 0.28s ease-out;
+      will-change: transform;
+    }
+
+    .geo-follower.circle {
+      width: clamp(20px, 3vw, 42px);
+      height: clamp(20px, 3vw, 42px);
+      border-radius: 50%;
+      background: var(--memphis-yellow);
+    }
+
+    .geo-follower.square {
+      width: clamp(20px, 3vw, 36px);
+      height: clamp(20px, 3vw, 36px);
+      background: var(--memphis-green);
+    }
+
+    .geo-follower.triangle {
+      width: clamp(24px, 3.4vw, 40px);
+      height: clamp(24px, 3.4vw, 40px);
+      background: var(--memphis-pink);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .geo-follower.diamond {
+      width: clamp(20px, 2.8vw, 34px);
+      height: clamp(20px, 2.8vw, 34px);
+      background: var(--memphis-blue);
+      transform: rotate(45deg);
+    }
+
+    .geo-follower.stripe {
+      width: clamp(28px, 4vw, 52px);
+      height: 12px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--memphis-red),
+        var(--memphis-red) 5px,
+        var(--memphis-white) 5px,
+        var(--memphis-white) 10px
+      );
+      border-radius: 8px;
+    }
+
+    /* ===========================================
+       SLIDE VISUAL SYSTEM
+       =========================================== */
+    .slide {
+      justify-content: center;
+      align-items: stretch;
+      background: var(--memphis-cream);
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle at 15% 18%, rgba(255, 105, 180, 0.24) 0 60px, transparent 61px),
+        radial-gradient(circle at 84% 78%, rgba(0, 255, 0, 0.18) 0 56px, transparent 57px),
+        repeating-linear-gradient(45deg, transparent 0 22px, rgba(255, 215, 0, 0.12) 22px 44px);
+      opacity: 0.62;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: clamp(14px, 2.1vh, 24px);
+      background:
+        linear-gradient(135deg, var(--memphis-yellow) 25%, transparent 25%) -20px 0,
+        linear-gradient(225deg, var(--memphis-yellow) 25%, transparent 25%) -20px 0,
+        linear-gradient(315deg, var(--memphis-yellow) 25%, transparent 25%),
+        linear-gradient(45deg, var(--memphis-yellow) 25%, transparent 25%);
+      background-size: 40px 40px;
+      opacity: 0.82;
+      z-index: 1;
+    }
+
+    .slide-content {
+      width: min(94vw, 1220px);
+      margin: 0 auto;
+      gap: var(--content-gap);
+      position: relative;
+      z-index: 5;
+      min-height: 0;
+    }
+
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--element-gap);
+      flex-wrap: wrap;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-accent);
+      font-size: clamp(0.75rem, 1.2vw, 1rem);
+      letter-spacing: 0.08em;
+      color: var(--memphis-black);
+      background: var(--memphis-yellow);
+      border: var(--stroke-width) solid var(--memphis-black);
+      border-radius: 999px;
+      padding: 4px 12px;
+      box-shadow: 3px 3px 0 var(--memphis-black);
+      text-transform: uppercase;
+    }
+
+    .time-chip {
+      background: var(--memphis-blue);
+      color: var(--memphis-white);
+      font-weight: 900;
+      font-size: var(--small-size);
+      border: var(--stroke-width) solid var(--memphis-black);
+      border-radius: 999px;
+      padding: 4px 10px;
+      box-shadow: 3px 3px 0 var(--memphis-black);
+    }
+
+    .slide-title {
+      font-family: var(--font-experimental);
+      font-size: var(--title-size);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--memphis-black);
+      max-width: 20ch;
+    }
+
+    .slide-title .small-top {
+      display: block;
+      font-size: clamp(0.8rem, 1.3vw, 1.1rem);
+      letter-spacing: 0.28em;
+      margin-bottom: 0.5rem;
+      color: #2d2d2d;
+    }
+
+    .subtitle {
+      font-size: clamp(0.95rem, 1.9vw, 1.4rem);
+      font-weight: 800;
+      max-width: 60ch;
+      color: #212121;
+      margin-top: 0.2rem;
+    }
+
+    .layout-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: clamp(0.7rem, 2vw, 1.4rem);
+      align-items: center;
+    }
+
+    .speaker-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(0.6rem, 1.4vw, 1rem);
+      margin-top: clamp(0.4rem, 1vw, 0.8rem);
+    }
+
+    .speaker-block {
+      border: var(--stroke-width) solid var(--memphis-black);
+      border-radius: 18px;
+      box-shadow: var(--shadow-hard);
+      padding: clamp(0.55rem, 1.2vw, 1rem);
+      background: rgba(255, 255, 255, 0.96);
+      min-height: 0;
+    }
+
+    .speaker-a {
+      background: linear-gradient(180deg, #fff, #ffe8f5);
+    }
+
+    .speaker-b {
+      background: linear-gradient(180deg, #fff, #e8f6ff);
+    }
+
+    .speaker-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: clamp(0.78rem, 1.1vw, 0.96rem);
+      margin-bottom: 6px;
+      padding: 2px 9px;
+      border: 2px solid var(--memphis-black);
+      border-radius: 999px;
+      background: var(--memphis-yellow);
+    }
+
+    .speaker-text {
+      font-size: clamp(0.78rem, 1.22vw, 1rem);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .geo-card {
+      border: var(--stroke-width) solid var(--memphis-black);
+      border-radius: 20px;
+      box-shadow: var(--shadow-hard);
+      background: var(--memphis-white);
+      padding: clamp(0.6rem, 1.2vw, 1rem);
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .geo-card h3 {
+      font-family: var(--font-display);
+      font-size: var(--h3-size);
+      margin-bottom: 6px;
+      line-height: 1.05;
+    }
+
+    .geo-card p,
+    .geo-card li,
+    .geo-card td {
+      font-size: clamp(0.74rem, 1.15vw, 0.98rem);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: clamp(0.5rem, 1.3vw, 1rem);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card-grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.3rem, 0.9vh, 0.65rem);
+      margin-top: 0.3rem;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.44em;
+      width: 0.56em;
+      height: 0.56em;
+      border: 2px solid var(--memphis-black);
+      border-radius: 50%;
+      background: var(--memphis-pink);
+    }
+
+    .outline-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: var(--stroke-width) solid var(--memphis-black);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-hard);
+      background: #fff;
+      font-size: clamp(0.7rem, 1.05vw, 0.92rem);
+      font-weight: 800;
+    }
+
+    .outline-table th,
+    .outline-table td {
+      border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+      padding: clamp(6px, 0.8vw, 10px) clamp(6px, 1vw, 12px);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .outline-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .outline-table th {
+      background: var(--memphis-yellow);
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: clamp(0.68rem, 1vw, 0.88rem);
+    }
+
+    .img-box {
+      border: var(--stroke-width) solid var(--memphis-black);
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 20px;
+      box-shadow: var(--shadow-hard);
+      padding: clamp(0.35rem, 0.9vw, 0.8rem);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .illustration {
+      width: 100%;
+      max-height: min(46vh, 340px);
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 2px solid rgba(0, 0, 0, 0.16);
+      background: #fff;
+    }
+
+    .img-caption {
+      font-size: var(--small-size);
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      color: #222;
+      text-align: center;
+    }
+
+    .note-strip {
+      border: var(--stroke-width) dashed var(--memphis-black);
+      border-radius: 14px;
+      padding: clamp(0.3rem, 0.7vw, 0.65rem);
+      font-size: clamp(0.72rem, 1.06vw, 0.92rem);
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .pause-chip {
+      display: inline-block;
+      margin-top: 6px;
+      background: var(--memphis-orange);
+      color: var(--memphis-white);
+      border: 2px solid var(--memphis-black);
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: var(--small-size);
+      padding: 4px 8px;
+      box-shadow: 2px 2px 0 var(--memphis-black);
+    }
+
+    .closing-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 7vw, 5rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+    }
+
+    .qna {
+      font-family: var(--font-accent);
+      font-size: clamp(1.1rem, 3vw, 2rem);
+      letter-spacing: 0.08em;
+      color: var(--memphis-blue);
+    }
+
+    /* ===========================================
+       REVEAL ANIMATION
+       =========================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity var(--duration-normal) var(--ease-out-expo),
+                  transform var(--duration-normal) var(--ease-out-expo);
+    }
+
+    .slide.visible .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal:nth-child(1) { transition-delay: 0.05s; }
+    .reveal:nth-child(2) { transition-delay: 0.12s; }
+    .reveal:nth-child(3) { transition-delay: 0.18s; }
+    .reveal:nth-child(4) { transition-delay: 0.24s; }
+
+    /* ===========================================
+       Delight mechanism: Bouncing Characters
+       =========================================== */
+    .bounce-word {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 0;
+    }
+
+    .bounce-word .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-80px) rotate(-20deg) scale(0);
+    }
+
+    .slide.visible .bounce-word .char {
+      animation: bounce-char 0.6s var(--ease-bounce) forwards;
+      animation-delay: calc(var(--i) * 0.05s);
+    }
+
+    @keyframes bounce-char {
+      0% {
+        opacity: 0;
+        transform: translateY(-80px) rotate(-20deg) scale(0);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(10px) rotate(5deg) scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0) scale(1);
+      }
+    }
+
+    /* ===========================================
+       Delight mechanism: Wavy Line (hover)
+       =========================================== */
+    .wavy-line {
+      display: inline-block;
+      cursor: pointer;
+      border-bottom: 2px dashed rgba(0, 0, 0, 0.35);
+      padding-bottom: 2px;
+    }
+
+    .wavy-line:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: 6px;
+    }
+
+    .wavy-line .char {
+      display: inline-block;
+      will-change: transform;
+    }
+
+    .wavy-line:hover .char,
+    .wavy-line:focus-visible .char {
+      animation: wave-lift 0.55s ease-in-out;
+      animation-delay: calc(var(--i) * 0.04s);
+    }
+
+    @keyframes wave-lift {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ===========================================
+       RESPONSIVE LAYOUT ADJUSTMENTS
+       =========================================== */
+    @media (max-width: 980px) {
+      .layout-split {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid,
+      .card-grid.two,
+      .speaker-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slide-title {
+        max-width: 100%;
+      }
+    }
+
+    /* ===========================================
+       REDUCED MOTION
+       Respect user preferences
+       =========================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .geo-follower {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
+
+  <div class="geo-layer" aria-hidden="true">
+    <span class="geo-follower circle" data-factor="0.65" style="left: 8%; top: 16%;"></span>
+    <span class="geo-follower triangle" data-factor="0.52" style="left: 86%; top: 11%;"></span>
+    <span class="geo-follower square" data-factor="0.47" style="left: 5%; top: 74%;"></span>
+    <span class="geo-follower diamond" data-factor="0.58" style="left: 90%; top: 68%;"></span>
+    <span class="geo-follower stripe" data-factor="0.38" style="left: 42%; top: 8%;"></span>
+  </div>
+
+  <!-- ===========================================
+       SLIDE 1: COVER
+       =========================================== -->
+  <section class="slide" data-title="Cover">
+    <div class="slide-content layout-split">
+      <div>
+        <div class="slide-header reveal">
+          <span class="kicker">Campus English Presentation</span>
+          <span class="time-chip">Slide 1 / 10</span>
+        </div>
+        <h1 class="slide-title reveal">
+          <span class="small-top">Speech on the Popular</span>
+          <span data-bounce>SBTI</span> Personality Test
+        </h1>
+        <p class="subtitle reveal wavy-line" data-wavy tabindex="0">Fun to take. Smart to question.</p>
+
+        <div class="speaker-grid reveal">
+          <article class="speaker-block speaker-a">
+            <span class="speaker-tag">lmzA</span>
+            <p class="speaker-text">Good morning, dear teachers and fellow students. I am lmzA.</p>
+          </article>
+          <article class="speaker-block speaker-b">
+            <span class="speaker-tag">lmzB</span>
+            <p class="speaker-text">Hello everyone, I am lmzB. It is our great honor to give this five-minute speech today.</p>
+          </article>
+        </div>
+      </div>
+
+      <figure class="img-box reveal">
+        <svg class="illustration" viewBox="0 0 420 300" role="img" aria-label="Cover image showing a phone and SBTI labels">
+          <rect width="420" height="300" fill="#fff8dc"/>
+          <circle cx="55" cy="52" r="26" fill="#ff69b4" stroke="#000" stroke-width="3"/>
+          <rect x="332" y="36" width="52" height="24" rx="12" fill="#ffd700" stroke="#000" stroke-width="3"/>
+          <polygon points="355,248 375,280 335,280" fill="#00ff00" stroke="#000" stroke-width="3"/>
+
+          <rect x="130" y="26" width="160" height="248" rx="24" fill="#ffffff" stroke="#000" stroke-width="4"/>
+          <rect x="147" y="52" width="126" height="176" rx="12" fill="#f6f8ff" stroke="#000" stroke-width="2"/>
+          <circle cx="210" cy="245" r="11" fill="#ff6600" stroke="#000" stroke-width="3"/>
+
+          <rect x="158" y="70" width="102" height="28" rx="8" fill="#ff69b4" stroke="#000" stroke-width="2"/>
+          <text x="209" y="89" text-anchor="middle" font-family="Nunito, sans-serif" font-size="13" font-weight="900">SBTI QUIZ</text>
+
+          <rect x="156" y="109" width="108" height="24" rx="8" fill="#ffd700" stroke="#000" stroke-width="2"/>
+          <text x="210" y="125" text-anchor="middle" font-family="Nunito, sans-serif" font-size="12" font-weight="800">MALOU</text>
+
+          <rect x="156" y="140" width="108" height="24" rx="8" fill="#00ced1" stroke="#000" stroke-width="2"/>
+          <text x="210" y="156" text-anchor="middle" font-family="Nunito, sans-serif" font-size="12" font-weight="800">SEXY</text>
+
+          <rect x="156" y="171" width="108" height="24" rx="8" fill="#00ff00" stroke="#000" stroke-width="2"/>
+          <text x="210" y="187" text-anchor="middle" font-family="Nunito, sans-serif" font-size="12" font-weight="800">MOM</text>
+
+          <path d="M102 130 Q84 140 94 162" stroke="#000" stroke-width="3" fill="none"/>
+          <rect x="42" y="148" width="78" height="38" rx="12" fill="#ffffff" stroke="#000" stroke-width="3"/>
+          <text x="81" y="171" text-anchor="middle" font-family="Bangers, cursive" font-size="14">1-2 min</text>
+
+          <path d="M322 132 Q342 146 330 164" stroke="#000" stroke-width="3" fill="none"/>
+          <rect x="304" y="156" width="90" height="38" rx="12" fill="#ffffff" stroke="#000" stroke-width="3"/>
+          <text x="349" y="180" text-anchor="middle" font-family="Bangers, cursive" font-size="14">light test</text>
+        </svg>
+        <figcaption class="img-caption">SBTI Topic Cover</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 2: PAGE MAP + IMAGE PLAN
+       =========================================== -->
+  <section class="slide" data-title="Outline">
+    <div class="slide-content layout-split">
+      <div class="reveal">
+        <div class="slide-header">
+          <span class="kicker">Today's Agenda</span>
+          <span class="time-chip">Slide 2 / 10</span>
+        </div>
+        <h2 class="slide-title" style="font-size: var(--h2-size); max-width: 28ch;">Speech Agenda</h2>
+        <table class="outline-table" aria-label="Speech mapping table">
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>Main Content</th>
+              <th>Presenter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Opening and title</td><td>lmzA + lmzB</td></tr>
+            <tr><td>2</td><td>Agenda transition</td><td>lmzA</td></tr>
+            <tr><td>3</td><td>What SBTI is</td><td>lmzA + lmzB</td></tr>
+            <tr><td>4</td><td>Malou, SEXY, Mom</td><td>lmzB</td></tr>
+            <tr><td>5</td><td>Advantages</td><td>lmzA</td></tr>
+            <tr><td>6</td><td>Disadvantages</td><td>lmzB</td></tr>
+            <tr><td>7</td><td>Class interaction</td><td>lmzA</td></tr>
+            <tr><td>8</td><td>Personal examples</td><td>lmzB + lmzA</td></tr>
+            <tr><td>9</td><td>Conclusion message</td><td>lmzA + lmzB</td></tr>
+            <tr><td>10</td><td>Thanks and ending</td><td>lmzA + lmzB</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="geo-card reveal">
+        <h3>Visual Support Plan</h3>
+        <ul class="bullet-list">
+          <li><strong>Visual 1:</strong> Cover phone + labels</li>
+          <li><strong>Visual 2:</strong> Three personality icons</li>
+          <li><strong>Visual 3:</strong> Pros vs cons balance</li>
+          <li><strong>Visual 4:</strong> Raise-hands interaction scene</li>
+        </ul>
+        <p class="note-strip" style="margin-top: 0.7rem;">These visuals support key ideas and make the speech easier to follow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 3: WHAT IS SBTI
+       =========================================== -->
+  <section class="slide" data-title="What is SBTI">
+    <div class="slide-content">
+      <div class="slide-header reveal">
+        <span class="kicker">Introduction</span>
+        <span class="time-chip">Slide 3 / 10</span>
+      </div>
+      <h2 class="slide-title reveal" style="font-size: var(--h2-size); max-width: 32ch;">What is SBTI and why is it so popular?</h2>
+
+      <div class="card-grid two reveal">
+        <article class="speaker-block speaker-a">
+          <span class="speaker-tag">lmzA</span>
+          <p class="speaker-text">If you open social apps now, you can easily see many college students sharing SBTI test results. It has become a hot campus topic.</p>
+          <ul class="bullet-list">
+            <li>Fast and phone-friendly</li>
+            <li>Easy to discuss with friends</li>
+            <li>Feels trendy and fun</li>
+          </ul>
+        </article>
+
+        <article class="speaker-block speaker-b">
+          <span class="speaker-tag">lmzB</span>
+          <p class="speaker-text">SBTI means <strong>Silly Big Personality Test</strong>. It is an entertaining online quiz, not a strict scientific assessment.</p>
+          <ul class="bullet-list">
+            <li>Questions are humorous and daily-life based</li>
+            <li>Usually takes around 1-2 minutes</li>
+            <li>Good for fun, not for formal diagnosis</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="note-strip reveal">Reminder: SBTI is useful for entertainment and reflection, not as a scientific diagnosis.</p>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 4: THREE TYPES
+       =========================================== -->
+  <section class="slide" data-title="Three Types">
+    <div class="slide-content layout-split">
+      <div>
+        <div class="slide-header reveal">
+          <span class="kicker">Three Classic Types</span>
+          <span class="time-chip">Slide 4 / 10</span>
+        </div>
+        <h2 class="slide-title reveal" style="font-size: var(--h2-size); max-width: 31ch;">Malou, SEXY, and Mom</h2>
+
+        <div class="card-grid reveal">
+          <article class="geo-card">
+            <h3>Malou</h3>
+            <p>Lazy and casual. Avoids anxiety and keeps a laid-back rhythm in study and life.</p>
+          </article>
+          <article class="geo-card">
+            <h3>SEXY</h3>
+            <p>Confident and attractive. Pays attention to self-image and leaves a strong impression.</p>
+          </article>
+          <article class="geo-card">
+            <h3>Mom</h3>
+            <p>Warm and caring. Reminds friends to take care and is often the most thoughtful person in a group.</p>
+          </article>
+        </div>
+
+        <p class="note-strip reveal" style="margin-top: 0.6rem;">These three labels are common examples students often discuss online.</p>
+      </div>
+
+      <figure class="img-box reveal">
+        <svg class="illustration" viewBox="0 0 420 300" role="img" aria-label="Three personality avatars">
+          <rect width="420" height="300" fill="#ffffff"/>
+          <rect x="24" y="24" width="372" height="252" rx="16" fill="#fff8dc" stroke="#000" stroke-width="3"/>
+
+          <circle cx="105" cy="132" r="52" fill="#ffd700" stroke="#000" stroke-width="3"/>
+          <circle cx="210" cy="132" r="52" fill="#00ced1" stroke="#000" stroke-width="3"/>
+          <circle cx="315" cy="132" r="52" fill="#00ff00" stroke="#000" stroke-width="3"/>
+
+          <circle cx="90" cy="122" r="5" fill="#000"/>
+          <circle cx="120" cy="122" r="5" fill="#000"/>
+          <path d="M86 144 Q105 154 124 144" stroke="#000" stroke-width="3" fill="none"/>
+
+          <circle cx="195" cy="122" r="5" fill="#000"/>
+          <circle cx="225" cy="122" r="5" fill="#000"/>
+          <path d="M191 148 Q210 137 229 148" stroke="#000" stroke-width="3" fill="none"/>
+
+          <circle cx="300" cy="122" r="5" fill="#000"/>
+          <circle cx="330" cy="122" r="5" fill="#000"/>
+          <path d="M296 144 Q315 160 334 144" stroke="#000" stroke-width="3" fill="none"/>
+
+          <rect x="60" y="196" width="90" height="32" rx="10" fill="#ff69b4" stroke="#000" stroke-width="3"/>
+          <text x="105" y="216" text-anchor="middle" font-family="Nunito, sans-serif" font-size="15" font-weight="900">MALOU</text>
+
+          <rect x="166" y="196" width="90" height="32" rx="10" fill="#0000ff" stroke="#000" stroke-width="3"/>
+          <text x="211" y="216" text-anchor="middle" fill="#fff" font-family="Nunito, sans-serif" font-size="15" font-weight="900">SEXY</text>
+
+          <rect x="270" y="196" width="90" height="32" rx="10" fill="#ff6600" stroke="#000" stroke-width="3"/>
+          <text x="315" y="216" text-anchor="middle" font-family="Nunito, sans-serif" font-size="15" font-weight="900">MOM</text>
+        </svg>
+        <figcaption class="img-caption">Three Typical SBTI Labels</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 5: ADVANTAGES
+       =========================================== -->
+  <section class="slide" data-title="Advantages">
+    <div class="slide-content">
+      <div class="slide-header reveal">
+        <span class="kicker">Advantages</span>
+        <span class="time-chip">Slide 5 / 10</span>
+      </div>
+      <h2 class="slide-title reveal" style="font-size: var(--h2-size); max-width: 31ch;">Why students enjoy SBTI</h2>
+
+      <div class="card-grid reveal">
+        <article class="geo-card" style="background: linear-gradient(180deg, #fff, #fff0f7);">
+          <h3>1) Convenient</h3>
+          <ul class="bullet-list">
+            <li>No preparation needed</li>
+            <li>Can be done in short free time</li>
+            <li>Fits busy college schedules</li>
+          </ul>
+        </article>
+
+        <article class="geo-card" style="background: linear-gradient(180deg, #fff, #eef8ff);">
+          <h3>2) Social Icebreaker</h3>
+          <ul class="bullet-list">
+            <li>Easy way to start conversations</li>
+            <li>Helps find common topics quickly</li>
+            <li>Makes new friendships easier</li>
+          </ul>
+        </article>
+
+        <article class="geo-card" style="background: linear-gradient(180deg, #fff, #f5fff1);">
+          <h3>3) Stress Relief</h3>
+          <ul class="bullet-list">
+            <li>Funny labels create laughter</li>
+            <li>Light content lowers pressure</li>
+            <li>Helps release bad mood briefly</li>
+          </ul>
+        </article>
+      </div>
+
+      <article class="speaker-block speaker-a reveal">
+        <span class="speaker-tag">lmzA</span>
+        <p class="speaker-text">These are the three major strengths: convenience, social connection, and stress relief.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 6: DISADVANTAGES
+       =========================================== -->
+  <section class="slide" data-title="Disadvantages">
+    <div class="slide-content layout-split">
+      <div>
+        <div class="slide-header reveal">
+          <span class="kicker">Disadvantages</span>
+          <span class="time-chip">Slide 6 / 10</span>
+        </div>
+        <h2 class="slide-title reveal" style="font-size: var(--h2-size); max-width: 32ch;">What we should not ignore</h2>
+
+        <article class="speaker-block speaker-b reveal">
+          <span class="speaker-tag">lmzB</span>
+          <ul class="bullet-list">
+            <li><strong>No strict scientific basis:</strong> results are random and cannot fully represent real personality.</li>
+            <li><strong>Label limitation risk:</strong> over-believing one label can reduce growth motivation.</li>
+            <li><strong>Unfair judging:</strong> using funny labels to define others is one-sided and inaccurate.</li>
+          </ul>
+        </article>
+
+        <p class="note-strip reveal">Over-identifying with labels may limit effort, confidence, and long-term growth.</p>
+      </div>
+
+      <figure class="img-box reveal">
+        <svg class="illustration" viewBox="0 0 420 300" role="img" aria-label="Balance scale showing pros and cons">
+          <rect width="420" height="300" fill="#ffffff"/>
+          <rect x="40" y="238" width="340" height="24" rx="10" fill="#000"/>
+          <rect x="198" y="94" width="24" height="150" fill="#000"/>
+          <rect x="96" y="94" width="228" height="18" rx="9" fill="#000"/>
+
+          <path d="M136 112 L98 188 L174 188 Z" fill="#00ff00" stroke="#000" stroke-width="3"/>
+          <path d="M286 112 L248 188 L324 188 Z" fill="#ff6600" stroke="#000" stroke-width="3"/>
+
+          <rect x="102" y="193" width="68" height="32" rx="9" fill="#ffffff" stroke="#000" stroke-width="3"/>
+          <text x="136" y="214" text-anchor="middle" font-family="Nunito, sans-serif" font-size="13" font-weight="900">PROS</text>
+
+          <rect x="252" y="193" width="68" height="32" rx="9" fill="#ffffff" stroke="#000" stroke-width="3"/>
+          <text x="286" y="214" text-anchor="middle" font-family="Nunito, sans-serif" font-size="13" font-weight="900">CONS</text>
+
+          <circle cx="210" cy="72" r="28" fill="#ffd700" stroke="#000" stroke-width="3"/>
+          <text x="210" y="77" text-anchor="middle" font-family="Bangers, cursive" font-size="20">SBTI</text>
+        </svg>
+        <figcaption class="img-caption">Pros and Cons Balance</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 7: INTERACTION
+       =========================================== -->
+  <section class="slide" data-title="Interaction">
+    <div class="slide-content layout-split">
+      <div>
+        <div class="slide-header reveal">
+          <span class="kicker">Audience Interaction</span>
+          <span class="time-chip">Slide 7 / 10</span>
+        </div>
+        <h2 class="slide-title reveal" style="font-size: var(--h2-size); max-width: 34ch;">Quick Class Interaction</h2>
+
+        <article class="speaker-block speaker-a reveal">
+          <span class="speaker-tag">lmzA</span>
+          <p class="speaker-text">Please raise your hands if you have ever taken the SBTI test.</p>
+          <span class="pause-chip">Pause 5 seconds</span>
+          <p class="speaker-text" style="margin-top: 8px;">Now raise your hands if your type is Malou, SEXY, or Mom.</p>
+          <span class="pause-chip">Pause 5 seconds</span>
+        </article>
+
+        <p class="note-strip reveal">It is great to see so many of you joining this quick class activity.</p>
+      </div>
+
+      <figure class="img-box reveal">
+        <svg class="illustration" viewBox="0 0 420 300" role="img" aria-label="Classroom hands-up interaction visual">
+          <rect width="420" height="300" fill="#fff8dc"/>
+          <rect x="20" y="20" width="380" height="90" rx="14" fill="#ffffff" stroke="#000" stroke-width="3"/>
+          <text x="210" y="52" text-anchor="middle" font-family="Bangers, cursive" font-size="30">Have You Tried SBTI?</text>
+          <text x="210" y="82" text-anchor="middle" font-family="Nunito, sans-serif" font-size="15" font-weight="800">Raise your hands!</text>
+
+          <rect x="0" y="240" width="420" height="60" fill="#000"/>
+
+          <circle cx="62" cy="218" r="18" fill="#ff69b4" stroke="#000" stroke-width="3"/>
+          <rect x="48" y="234" width="28" height="30" fill="#ff69b4" stroke="#000" stroke-width="3"/>
+          <rect x="41" y="172" width="12" height="70" fill="#ff69b4" stroke="#000" stroke-width="3"/>
+
+          <circle cx="142" cy="214" r="18" fill="#00ced1" stroke="#000" stroke-width="3"/>
+          <rect x="128" y="230" width="28" height="34" fill="#00ced1" stroke="#000" stroke-width="3"/>
+          <rect x="161" y="166" width="12" height="76" fill="#00ced1" stroke="#000" stroke-width="3"/>
+
+          <circle cx="222" cy="218" r="18" fill="#ffd700" stroke="#000" stroke-width="3"/>
+          <rect x="208" y="234" width="28" height="30" fill="#ffd700" stroke="#000" stroke-width="3"/>
+          <rect x="200" y="176" width="12" height="68" fill="#ffd700" stroke="#000" stroke-width="3"/>
+
+          <circle cx="302" cy="214" r="18" fill="#00ff00" stroke="#000" stroke-width="3"/>
+          <rect x="288" y="230" width="28" height="34" fill="#00ff00" stroke="#000" stroke-width="3"/>
+          <rect x="318" y="162" width="12" height="80" fill="#00ff00" stroke="#000" stroke-width="3"/>
+
+          <circle cx="362" cy="218" r="18" fill="#ff6600" stroke="#000" stroke-width="3"/>
+          <rect x="348" y="234" width="28" height="30" fill="#ff6600" stroke="#000" stroke-width="3"/>
+          <rect x="337" y="180" width="12" height="62" fill="#ff6600" stroke="#000" stroke-width="3"/>
+        </svg>
+        <figcaption class="img-caption">Class Interaction Moment</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 8: PERSONAL SHARING
+       =========================================== -->
+  <section class="slide" data-title="Personal Sharing">
+    <div class="slide-content">
+      <div class="slide-header reveal">
+        <span class="kicker">Personal Sharing</span>
+        <span class="time-chip">Slide 8 / 10</span>
+      </div>
+      <h2 class="slide-title reveal" style="font-size: var(--h2-size); max-width: 35ch;">Two Personal Examples</h2>
+
+      <div class="card-grid two reveal">
+        <article class="speaker-block speaker-b">
+          <span class="speaker-tag">lmzB</span>
+          <p class="speaker-text">I have taken SBTI before, and my result is <strong>FAKE</strong>.</p>
+          <ul class="bullet-list">
+            <li>Funny and random result</li>
+            <li>Good for entertainment value</li>
+            <li>Not a serious personality test</li>
+          </ul>
+        </article>
+
+        <article class="speaker-block speaker-a">
+          <span class="speaker-tag">lmzA</span>
+          <p class="speaker-text">I have never tried this SBTI test, so my result is still unknown.</p>
+          <ul class="bullet-list">
+            <li>We can understand ourselves without this test</li>
+            <li>Life experience is still the key mirror</li>
+            <li>Self-reflection matters more than labels</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="note-strip reveal">This also reminds us that we do not need a simple test label to define who we are.</p>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 9: CONCLUSION
+       =========================================== -->
+  <section class="slide" data-title="Conclusion">
+    <div class="slide-content">
+      <div class="slide-header reveal">
+        <span class="kicker">Conclusion</span>
+        <span class="time-chip">Slide 9 / 10</span>
+      </div>
+      <h2 class="slide-title reveal" style="font-size: var(--h2-size); max-width: 32ch;">Enjoy the fun, keep clear judgment</h2>
+
+      <div class="card-grid two reveal">
+        <article class="speaker-block speaker-a">
+          <span class="speaker-tag">lmzA</span>
+          <p class="speaker-text">In a word, SBTI is an interesting entertainment tool. It can bring happiness and help us make friends more easily, but it has no scientific value.</p>
+        </article>
+
+        <article class="speaker-block speaker-b">
+          <span class="speaker-tag">lmzB</span>
+          <p class="speaker-text">We can enjoy SBTI, but we should never take the results too seriously. As college students, we should know ourselves through real life and reflection.</p>
+        </article>
+      </div>
+
+      <article class="geo-card reveal" style="background: linear-gradient(90deg, #ffffff, #f2fbff);">
+        <h3>Main takeaway</h3>
+        <ul class="bullet-list">
+          <li>Use SBTI for fun conversation and stress release.</li>
+          <li>Avoid turning temporary labels into fixed identity.</li>
+          <li>Build self-knowledge through action, feedback, and reflection.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===========================================
+       SLIDE 10: THANK YOU
+       =========================================== -->
+  <section class="slide" data-title="Thank You">
+    <div class="slide-content" style="align-items: center; text-align: center; justify-content: center;">
+      <div class="slide-header reveal" style="width: 100%; justify-content: center; gap: 0.6rem;">
+        <span class="kicker">Closing</span>
+        <span class="time-chip">Slide 10 / 10</span>
+      </div>
+
+      <h2 class="closing-title reveal" style="background: var(--gradient-hot); background-clip: text; -webkit-background-clip: text; color: transparent; -webkit-text-fill-color: transparent;">
+        Thank You!
+      </h2>
+      <p class="subtitle reveal" style="max-width: 44ch;">lmzA: Thank you all for your careful listening.</p>
+      <p class="subtitle reveal" style="max-width: 44ch;">lmzB: Thank you!</p>
+      <p class="qna reveal">Q &amp; A</p>
+
+    </div>
+  </section>
+
+  <script>
+    class SlidePresentation {
+      constructor() {
+        this.slides = Array.from(document.querySelectorAll('.slide'));
+        this.currentSlide = 0;
+        this.navDotsContainer = document.getElementById('navDots');
+        this.progressBar = document.getElementById('progressBar');
+        this.touchStartY = 0;
+        this.wheelLocked = false;
+
+        this.setupBouncingChars();
+        this.setupWavyLines();
+        this.setupIntersectionObserver();
+        this.setupKeyboardNav();
+        this.setupTouchNav();
+        this.setupWheelNav();
+        this.setupNavDots();
+        this.setupGeometryFollower();
+
+        window.addEventListener('load', () => {
+          this.fitSlideContent();
+          this.updateCurrentByViewport();
+          this.updateProgressBar();
+        });
+
+        window.addEventListener('resize', () => this.fitSlideContent());
+      }
+
+      setupIntersectionObserver() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const index = this.slides.indexOf(entry.target);
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                if (entry.intersectionRatio > 0.52) {
+                  this.currentSlide = index;
+                  this.updateNavDots();
+                  this.updateProgressBar();
+                }
+              }
+            });
+          },
+          {
+            threshold: [0.18, 0.52, 0.75]
+          }
+        );
+
+        this.slides.forEach((slide) => observer.observe(slide));
+      }
+
+      setupKeyboardNav() {
+        document.addEventListener('keydown', (event) => {
+          const tag = (event.target && event.target.tagName) ? event.target.tagName.toLowerCase() : '';
+          if (tag === 'input' || tag === 'textarea') return;
+
+          if (event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ') {
+            event.preventDefault();
+            this.nextSlide();
+          } else if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+            event.preventDefault();
+            this.prevSlide();
+          } else if (event.key === 'Home') {
+            event.preventDefault();
+            this.goToSlide(0);
+          } else if (event.key === 'End') {
+            event.preventDefault();
+            this.goToSlide(this.slides.length - 1);
+          }
+        });
+      }
+
+      setupTouchNav() {
+        window.addEventListener('touchstart', (event) => {
+          this.touchStartY = event.changedTouches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (event) => {
+          const touchEndY = event.changedTouches[0].clientY;
+          const diff = this.touchStartY - touchEndY;
+          if (Math.abs(diff) < 45) return;
+          if (diff > 0) this.nextSlide();
+          else this.prevSlide();
+        }, { passive: true });
+      }
+
+      setupWheelNav() {
+        window.addEventListener('wheel', (event) => {
+          if (Math.abs(event.deltaY) < 25) return;
+          if (this.wheelLocked) {
+            event.preventDefault();
+            return;
+          }
+
+          this.wheelLocked = true;
+          event.preventDefault();
+
+          if (event.deltaY > 0) this.nextSlide();
+          else this.prevSlide();
+
+          window.setTimeout(() => {
+            this.wheelLocked = false;
+          }, 500);
+        }, { passive: false });
+      }
+
+      setupNavDots() {
+        this.navDotsContainer.innerHTML = '';
+        this.slides.forEach((slide, index) => {
+          const button = document.createElement('button');
+          button.className = 'nav-dot';
+          button.type = 'button';
+          button.setAttribute('aria-label', 'Go to slide ' + (index + 1));
+          button.title = (index + 1) + '. ' + (slide.dataset.title || 'Slide');
+          button.addEventListener('click', () => this.goToSlide(index));
+          this.navDotsContainer.appendChild(button);
+        });
+        this.updateNavDots();
+      }
+
+      setupBouncingChars() {
+        const nodes = document.querySelectorAll('[data-bounce]');
+        nodes.forEach((node) => {
+          if (node.dataset.ready === '1') return;
+          const text = node.textContent || '';
+          node.textContent = '';
+          node.classList.add('bounce-word');
+          Array.from(text).forEach((ch, i) => {
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.style.setProperty('--i', i);
+            span.textContent = ch === ' ' ? '\u00A0' : ch;
+            node.appendChild(span);
+          });
+          node.dataset.ready = '1';
+        });
+      }
+
+      setupWavyLines() {
+        const nodes = document.querySelectorAll('[data-wavy]');
+        nodes.forEach((node) => {
+          if (node.dataset.ready === '1') return;
+          const text = node.textContent || '';
+          node.textContent = '';
+          node.classList.add('wavy-line');
+          Array.from(text).forEach((ch, i) => {
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.style.setProperty('--i', i);
+            span.textContent = ch === ' ' ? '\u00A0' : ch;
+            node.appendChild(span);
+          });
+          node.dataset.ready = '1';
+        });
+      }
+
+      setupGeometryFollower() {
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduce) return;
+
+        this.followers = Array.from(document.querySelectorAll('.geo-follower'));
+        window.addEventListener('mousemove', (event) => {
+          const normX = (event.clientX / window.innerWidth) - 0.5;
+          const normY = (event.clientY / window.innerHeight) - 0.5;
+          this.followers.forEach((el) => {
+            const factor = Number(el.dataset.factor || 0.5);
+            const tx = normX * 36 * factor;
+            const ty = normY * 36 * factor;
+            el.style.transform = 'translate(' + tx.toFixed(2) + 'px, ' + ty.toFixed(2) + 'px)';
+          });
+        }, { passive: true });
+      }
+
+      updateCurrentByViewport() {
+        let bestIndex = 0;
+        let bestRatio = 0;
+        this.slides.forEach((slide, index) => {
+          const rect = slide.getBoundingClientRect();
+          const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+          const ratio = visible / Math.max(1, rect.height);
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestIndex = index;
+          }
+        });
+        this.currentSlide = bestIndex;
+        this.updateNavDots();
+        this.updateProgressBar();
+      }
+
+      updateProgressBar() {
+        const max = Math.max(1, this.slides.length - 1);
+        const percent = (this.currentSlide / max) * 100;
+        this.progressBar.style.width = percent + '%';
+      }
+
+      updateNavDots() {
+        const dots = Array.from(this.navDotsContainer.querySelectorAll('.nav-dot'));
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === this.currentSlide);
+        });
+      }
+
+      goToSlide(index) {
+        const target = Math.min(this.slides.length - 1, Math.max(0, index));
+        this.currentSlide = target;
+        this.slides[target].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        this.updateNavDots();
+        this.updateProgressBar();
+      }
+
+      nextSlide() {
+        this.goToSlide(this.currentSlide + 1);
+      }
+
+      prevSlide() {
+        this.goToSlide(this.currentSlide - 1);
+      }
+
+      fitSlideContent() {
+        this.slides.forEach((slide) => {
+          const content = slide.querySelector('.slide-content');
+          if (!content) return;
+
+          content.style.transform = '';
+          content.style.transformOrigin = 'center center';
+          void content.offsetHeight;
+
+          const isOverflowing = content.scrollHeight > content.clientHeight;
+          if (isOverflowing) {
+            const scale = content.clientHeight / content.scrollHeight;
+            const safeScale = Math.max(0.5, scale * 0.95);
+            content.style.transform = 'scale(' + safeScale.toFixed(3) + ')';
+          }
+        });
+      }
+    }
+
+    new SlidePresentation();
+  </script>
+</body>
+</html>
